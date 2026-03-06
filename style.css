@@ -1,0 +1,324 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#0f172a;
+padding:40px 0;
+}
+
+/* GAME */
+
+#game{
+width:900px;
+max-width:95%;
+height:600px;
+margin:0 auto;
+background:#1e293b;
+border-radius:12px;
+overflow:hidden;
+position:relative;
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+background:#020617;
+color:white;
+font-size:18px;
+border-bottom:2px solid #0ea5e9;
+}
+
+/* PROGRESSO */
+
+#progressContainer{
+width:100%;
+height:8px;
+background:#1e293b;
+}
+
+#progressBar{
+height:8px;
+width:0%;
+background:linear-gradient(90deg,#22c55e,#4ade80);
+transition:0.3s;
+}
+
+/* AREA DO JOGO */
+
+#area{
+position:relative;
+width:100%;
+height:calc(100% - 140px);
+overflow:hidden;
+}
+
+/* TELA INICIAL */
+
+#startScreen{
+position:absolute;
+width:100%;
+height:100%;
+background-image:url("imgjogo.png");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+z-index:10;
+}
+
+#startScreen::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.gameTitle{
+font-size:42px;
+color:white;
+z-index:2;
+}
+
+/* BOTÕES */
+
+.menuBtn{
+z-index:2;
+padding:12px 28px;
+font-size:16px;
+border:none;
+border-radius:8px;
+background:#0ea5e9;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.menuBtn:hover{
+background:#0284c7;
+transform:scale(1.05);
+}
+
+#startBtn{
+z-index:2;
+padding:18px 40px;
+font-size:22px;
+border:none;
+border-radius:10px;
+background:#22c55e;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+#startBtn:hover{
+transform:scale(1.05);
+background:#16a34a;
+}
+
+/* BOX DA PERGUNTA */
+
+.box{
+position:absolute;
+padding:25px;
+background:black;
+backdrop-filter:blur(10px);
+border-radius:12px;
+border:2px solid rgba(255,255,255,0.2);
+display:flex;
+flex-direction:column;
+gap:10px;
+min-width:220px;
+color:white;
+font-size:22px;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+transition:all 10s linear;
+}
+.boxPergunta{
+    color: white;
+}
+.box label{
+text-align:center;
+font-weight:bold;
+}
+
+/* TIMER */
+
+#timer{
+color:#facc15;
+font-weight:bold;
+}
+
+/* ALERTA */
+
+.alerta{
+color:white;
+}
+
+.fechar{
+display:none;
+}
+
+/* BARRA DE RESPOSTA */
+
+#respostaContainer{
+
+display:none;
+
+position:absolute;
+bottom:0;
+left:0;
+
+width:100%;
+height:70px;
+
+background:#020617;
+
+justify-content:center;
+align-items:center;
+gap:10px;
+
+padding:10px;
+
+border-top:2px solid #0ea5e9;
+
+}
+
+#respostaInput{
+
+width:200px;
+padding:10px;
+
+font-size:18px;
+
+border:none;
+border-radius:6px;
+
+text-align:center;
+
+}
+
+#confirmarBtn{
+
+padding:10px 20px;
+
+border:none;
+border-radius:6px;
+
+background:#22c55e;
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+#confirmarBtn:hover{
+
+background:#16a34a;
+
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width:600px){
+
+body{
+padding:0;
+}
+
+/* jogo ocupa a tela */
+
+#game{
+width:100%;
+height:100vh;
+margin:0;
+border-radius:0;
+}
+
+/* área do jogo menor para o teclado */
+
+#area{
+height:calc(100% - 160px);
+}
+
+/* box menor */
+
+.box{
+min-width:160px;
+font-size:18px;
+padding:15px;
+}
+
+/* título menor */
+
+.gameTitle{
+font-size:28px;
+text-align:center;
+}
+
+/* botão start menor */
+
+#startBtn{
+font-size:18px;
+padding:14px 28px;
+}
+
+/* barra de resposta mobile */
+
+.respostaContainer{
+
+position:fixed;
+bottom:0;
+left:0;
+
+width:100%;
+height:80px;
+
+background:#020617;
+
+display:none;
+
+justify-content:center;
+align-items:center;
+gap:10px;
+
+padding:10px;
+
+border-top:2px solid #0ea5e9;
+
+}
+
+/* input maior para digitar melhor */
+
+.respostaInput{
+
+width:70%;
+font-size:20px;
+padding:12px;
+
+}
+
+/* botão */
+
+#confirmarBtn{
+
+font-size:16px;
+padding:10px 20px;
+
+}
+
+}
