@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Math Challenge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -67,7 +68,7 @@ transition:0.3s;
 #area{
 position:relative;
 width:100%;
-height:calc(100% - 70px);
+height:calc(100% - 140px);
 overflow:hidden;
 }
 
@@ -190,7 +191,210 @@ font-weight:bold;
 .fechar{
     display: none;
 }
+/* RESPONSIVIDADE */
 
+@media (max-width:600px){
+
+body{
+padding:0;
+}
+
+#game{
+width:100%;
+height:100vh;
+margin:0;
+border-radius:0;
+}
+
+header{
+font-size:14px;
+padding:10px;
+}
+
+.box{
+min-width:160px;
+font-size:18px;
+padding:15px;
+}
+
+.box input{
+font-size:16px;
+}
+
+.box button{
+font-size:14px;
+padding:8px;
+}
+
+.gameTitle{
+font-size:28px;
+text-align:center;
+}
+
+#startBtn{
+font-size:18px;
+padding:14px 28px;
+}
+
+}
+
+@media (max-width:600px){
+
+body{
+padding:0;
+}
+
+/* jogo ocupa a tela */
+#game{
+width:100%;
+height:100vh;
+margin:0;
+border-radius:0;
+}
+
+/* área do jogo deixa espaço para teclado */
+#area{
+height:calc(100% - 220px);
+}
+
+/* box menor no mobile */
+.box{
+min-width:160px;
+font-size:18px;
+padding:15px;
+}
+
+/* botões menores */
+.box button{
+padding:8px;
+font-size:14px;
+}
+
+}
+#answerBar{
+
+position:absolute;
+bottom:0;
+left:0;
+
+width:100%;
+height:70px;
+
+background:#020617;
+
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+
+padding:10px;
+border-top:2px solid #0ea5e9;
+
+}
+
+#answerBar input{
+
+width:200px;
+padding:10px;
+
+font-size:18px;
+
+border:none;
+border-radius:6px;
+
+}
+
+#answerBar button{
+
+padding:10px 20px;
+
+border:none;
+border-radius:6px;
+
+background:#22c55e;
+color:white;
+
+font-size:16px;
+cursor:pointer;
+
+}
+
+#answerBar button:hover{
+
+background:#16a34a;
+
+}
+/* MOBILE */
+
+@media (max-width:600px){
+
+body{
+padding:0;
+}
+
+#game{
+width:100%;
+height:100vh;
+border-radius:0;
+margin:0;
+}
+
+/* área do jogo um pouco menor para o teclado não cobrir */
+
+#area{
+height:calc(100% - 140px);
+}
+
+/* campo de resposta fixo no rodapé */
+
+#respostaContainer{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:15px;
+background:#020617;
+display:flex;
+gap:10px;
+}
+
+/* esconder antes do jogo iniciar */
+
+#respostaContainer{
+display:none;
+}
+
+}
+
+.resposta-container{
+    display: none;
+}
+
+/* Mobile */
+@media (max-width:600px){
+
+    #game{
+        height:100vh;
+    }
+
+    .resposta-container{
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        padding:15px;
+        background:#fff;
+        box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+    }
+
+    #respostaInput{
+        width:100%;
+        font-size:20px;
+        padding:15px;
+        text-align:center;
+    }
+
+}
 </style>
 </head>
 
@@ -212,17 +416,39 @@ font-weight:bold;
 
 <div id="area">
 
-<div id="startScreen">
 
-<button class="menuBtn" onclick="iniciarModo('normal')">Modo Normal</button>
-<button class="menuBtn" onclick="iniciarModo('enem')">Modo ENEM</button>
-<button class="menuBtn" onclick="iniciarModo('treino')">Modo Treino</button>
+    <div id="startScreen">
 
-<h1 class="gameTitle">Math Challenge</h1>
+    <button class="menuBtn" onclick="iniciarModo('normal')">Modo Normal</button>
+    <button class="menuBtn" onclick="iniciarModo('enem')">Modo ENEM</button>
+    <button class="menuBtn" onclick="iniciarModo('treino')">Modo Treino</button>
 
-<button id="startBtn">Iniciar Game</button>
+    <h1 class="gameTitle">Math Challenge</h1>
+
+    <button id="startBtn">Iniciar Game</button>
+
+    </div>
 
 </div>
+<div id="respostaContainer" class="resposta-container">
+    <input 
+        type="number" 
+        id="respostaInput" 
+        placeholder="Digite a resposta"
+    >
+</div>
+<div id="answerBar">
+
+<input 
+id="respostaInput"
+type="number"
+inputmode="numeric"
+placeholder="Digite a resposta"
+/>
+
+<button id="confirmarBtn">
+OK
+</button>
 
 </div>
 
@@ -254,6 +480,7 @@ let metaNivel=5
 let tempo=10
 let intervalo
 
+
 /* MODO */
 
 function iniciarModo(modo){
@@ -263,18 +490,15 @@ document.getElementById("startBtn").click()
 
 }
 
+
 /* TEMPO POR NÍVEL */
 
 function definirTempo(){
 
-/* MODO TREINO — MAIS TEMPO PARA PENSAR */
-
 if(modoJogo === "treino"){
-    tempo = 30
-    return
+tempo = 30
+return
 }
-
-/* MODO NORMAL / ENEM — ESCALA DE DIFICULDADE */
 
 if(nivel < 5) tempo = 10
 else if(nivel < 10) tempo = 15
@@ -283,14 +507,13 @@ else tempo = 30
 
 }
 
+
 /* GERAR CONTA */
 
 function gerarConta(){
 
 if(modoJogo==="enem") return perguntasEnem()
 if(modoJogo==="treino") return perguntasTreino()
-
-/* BASICO */
 
 if(nivel<=3){
 
@@ -305,8 +528,6 @@ resposta=eval(`${a}${op}${b}`)
 return `${a} ${op} ${b}`
 
 }
-
-/* EXPRESSÕES */
 
 if(nivel<=6){
 
@@ -327,8 +548,6 @@ return exp
 
 }
 
-/* PARÊNTESES */
-
 if(nivel<=10){
 
 let a=Math.floor(Math.random()*20)
@@ -342,8 +561,6 @@ resposta=eval(exp)
 return exp
 
 }
-
-/* POTÊNCIA */
 
 if(nivel<=15){
 
@@ -368,18 +585,23 @@ return `Se 2/3 = ${c}/x, qual é x?`
 
 }
 
+
 /* POSIÇÃO */
 
 function posicao(){
 
 let area=document.getElementById("area")
 
+let largura=area.clientWidth-200
+let altura=area.clientHeight-160
+
 return{
-x:Math.random()*(area.clientWidth-220),
-y:Math.random()*(area.clientHeight-120)
+x:Math.random()*largura,
+y:Math.random()*altura
 }
 
 }
+
 
 /* BARRA */
 
@@ -389,6 +611,7 @@ let p=(progresso/metaNivel)*100
 document.getElementById("progressBar").style.width=p+"%"
 
 }
+
 
 /* TIMER */
 
@@ -415,7 +638,10 @@ document.getElementById("vidas").innerText=vidas
 
 document.getElementById("wrongSound").play()
 
-if(vidas<=0){gameOver();return}
+if(vidas<=0){
+gameOver()
+return
+}
 
 novaRodada()
 
@@ -424,6 +650,53 @@ novaRodada()
 },1000)
 
 }
+
+
+/* VERIFICAR RESPOSTA */
+
+function verificarResposta(){
+
+clearInterval(intervalo)
+
+let input=document.getElementById("respostaInput")
+
+let valor=Number(input.value)
+
+if(valor===resposta){
+
+document.getElementById("correctSound").play()
+
+pontos+=10
+progresso++
+
+document.getElementById("pontos").innerText=pontos
+
+atualizarBarra()
+
+if(progresso>=metaNivel)
+proximoNivel()
+else
+novaRodada()
+
+}else{
+
+document.getElementById("wrongSound").play()
+
+vidas--
+
+document.getElementById("vidas").innerText=vidas
+
+if(vidas<=0){
+gameOver()
+return
+}
+
+novaRodada()
+
+}
+
+}
+
 
 /* BOX */
 
@@ -445,62 +718,39 @@ box.style.top=p1.y+"px"
 let label=document.createElement("label")
 label.innerText=gerarConta()
 
-let input=document.createElement("input")
-
-let btn=document.createElement("button")
-btn.innerText="Confirmar"
-
-/* VERIFICAR */
-
-function verificar(){
-
-clearInterval(intervalo)
-
-let valor=Number(input.value)
-
-if(valor===resposta){
-
-document.getElementById("correctSound").play()
-
-pontos+=10
-progresso++
-
-document.getElementById("pontos").innerText=pontos
-
-atualizarBarra()
-
-if(progresso>=metaNivel) proximoNivel()
-else novaRodada()
-
-}
-
-else{
-
-document.getElementById("wrongSound").play()
-
-vidas--
-
-document.getElementById("vidas").innerText=vidas
-
-if(vidas<=0){gameOver();return}
-
-novaRodada()
-
-}
-
-}
-
-btn.onclick=verificar
-
-input.addEventListener("keydown",e=>{
-if(e.key==="Enter") verificar()
-})
-
 box.appendChild(label)
-box.appendChild(input)
-box.appendChild(btn)
 
 area.appendChild(box)
+
+
+/* CAMPO FIXO */
+
+let input=document.getElementById("respostaInput")
+let btn=document.getElementById("confirmarBtn")
+
+input.value=""
+
+/* teclado numérico */
+
+input.type="number"
+input.inputMode="numeric"
+input.pattern="[0-9]*"
+
+/* botão confirmar */
+
+btn.onclick=verificarResposta
+
+/* ENTER */
+
+input.onkeydown=function(e){
+
+if(e.key==="Enter"){
+verificarResposta()
+}
+
+}
+
+/* movimento da box */
 
 setTimeout(()=>{
 
@@ -511,11 +761,18 @@ box.style.top=p2.y+"px"
 
 },50)
 
-setTimeout(()=>input.focus(),100)
+/* foco automático */
+
+setTimeout(()=>{
+input.focus()
+},100)
+
+/* iniciar timer */
 
 iniciarTimer()
 
 }
+
 
 /* PRÓXIMO NÍVEL */
 
@@ -542,6 +799,7 @@ novaRodada()
 
 }
 
+
 /* GAME OVER */
 
 function gameOver(){
@@ -549,21 +807,37 @@ function gameOver(){
 salvarRanking()
 
 Swal.fire({
+
 title:"Game Over",
 html:`Pontuação: ${pontos}<br>Nível alcançado: ${nivel}`,
 icon:"error",
-confirmButtonText:"Ver Ranking"
-}).then(()=>{
-mostrarRanking()
+showCancelButton:true,
+confirmButtonText:"🔁 Jogar novamente",
+cancelButtonText:"🏠 Menu principal"
+
+}).then((result)=>{
+
+if(result.isConfirmed){
+
+location.reload()
+
+}else{
+
+voltarMenu()
+
+}
+
 })
 
 }
+
 
 /* NOVA RODADA */
 
 function novaRodada(){
 criarBox()
 }
+
 
 /* START */
 
@@ -575,9 +849,20 @@ setTimeout(()=>{
 
 document.getElementById("startScreen").style.display="none"
 
+/* mostrar input apenas no mobile */
+
+if(window.innerWidth<=600){
+
+document.getElementById("respostaContainer").style.display="flex"
+
+}
+
+/* música */
+
 let music=document.getElementById("bgMusic")
 
 music.volume=0.3
+
 music.play()
 
 novaRodada()
@@ -585,6 +870,7 @@ novaRodada()
 },400)
 
 }
+
 
 /* RANKING */
 
@@ -606,6 +892,7 @@ localStorage.setItem("rankingMathGame",JSON.stringify(ranking))
 
 }
 
+
 function mostrarRanking(){
 
 let ranking=JSON.parse(localStorage.getItem("rankingMathGame"))||[]
@@ -625,6 +912,7 @@ html:html
 
 }
 
+
 /* TREINO */
 
 function perguntasTreino(){
@@ -640,6 +928,7 @@ resposta=eval(exp)
 return exp
 
 }
+
 
 /* ENEM */
 
@@ -667,6 +956,53 @@ return p.texto
 
 }
 
+
+/* VOLTAR MENU */
+
+function voltarMenu(){
+
+clearInterval(intervalo)
+
+/* parar música */
+
+let music=document.getElementById("bgMusic")
+music.pause()
+music.currentTime=0
+
+/* limpar área */
+
+document.getElementById("area").innerHTML=""
+
+/* esconder campo de resposta */
+
+let respostaContainer=document.getElementById("respostaContainer")
+
+if(respostaContainer){
+respostaContainer.style.display="none"
+}
+
+/* mostrar tela inicial */
+
+let start=document.getElementById("startScreen")
+
+start.style.display="flex"
+
+document.getElementById("area").appendChild(start)
+
+/* resetar */
+
+vidas=5
+pontos=0
+nivel=1
+progresso=0
+metaNivel=5
+
+document.getElementById("vidas").innerText=vidas
+document.getElementById("pontos").innerText=pontos
+document.getElementById("nivel").innerText=nivel
+document.getElementById("progressBar").style.width="0%"
+
+}
 </script>
 
 </body>
