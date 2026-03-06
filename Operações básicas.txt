@@ -1,0 +1,280 @@
+Regras de três simples e inversamente proporcionais
+
+Na regra de três simples analisamos o sentido proporcional das grandezas, ou seja se uma aumentar a outra também aumenta. Porém, quando essas grandezas são inversamente proporcionais uma irá aumentar e a outra irá diminuir.
+
+Para realizar operações matemáticas em ordem correta seguimos um modelo chamado PEMDAS, que significa parênteses, expoentes, multiplicações, divisões, adições e subtrações. 
+
+*Observação
+Quando existir multiplicação e divisão fora de parênteses, realizamos a operação da esquerda para a direita, exemplo:
+
+9 / 3 * 4 
+3*4 = 12
+Primeiro dividimos e depois multiplicamos, seguindo a ordem de execução de esquerda para a direita. Outro exemplo:
+
+8 * 4/2
+32/2 = 16
+
+Operações comuns para treinar
+
+64/4(4-2)+3
+64/4 2 + 3
+16 +2 +3
+21
+
+2+(4² - 2x3)
+2+(16 - 6)
+2+16-6
+12
+
+Frações
+1/2 -> 1 dividido por 2
+numerador fica em cima e denominador em baixo
+e expoente é o número que indicará quantas vezes o numerador será multiplicado, exemplo 2²
+
+Tipos de frações
+
+Fração própria 
+Numerador menor do que o denominador
+2/5
+
+Fração imprópria
+Numerador maior do que o denominador
+5/2
+
+Número misto
+1 3/4 
+Para somar números mistos é necessário que o número inteiro seja transformado em uma fração equivalente (de preferência a que tenha o denominador igual a outra fração para facilitar a soma).
+
+Frações equivalentes
+Frações diferentes que valem a mesma coisa
+1/2 = 2/4 = 3/6
+Multiplicamos ou dividimos em cima ou em baixo pelo mesmo número
+
+Simplificação de frações
+É dividir o numerador e denominador pelo mesmo número
+6/3 divido por 3
+2/1
+
+Soma e subtração de fração
+somar os numeradores que tem o mesmo denominador
+15/7 +19/7 = 34/7
+
+Denominadores diferentes 
+1/2 + 1/4
+tira o MMC(mínimo múltiplo comum)
+2,4 
+1,2 2
+1,1 2
+*Achei o mmc de duas frações com denominadores diferentes, o que faço agora?
+
+Agora você deve substituir os denominadores das frações pelo mmc encontrado e se fazer a pergunta para encontrar o numerador: Considerando o denominador antigo e o mmc encontrado, por quanto foi multiplicado? A resposta deve ser multiplicada pelos nos numeradores de ambas as frações. Exemplo:
+1/2 + 1/4
+mmc(2,4) é 4
+De 2(denominador antigo) para 4(novo denominador) tenho 2, então multiplico pelo numerador ficando 2/4 + 1/4 = 3/4. Lembrando que dividindo 4/4 é igual 1 por isso o denominador da segunda fração continua sendo 1.
+
+
+Multiplicação de frações
+2/3 * 4/5
+multiplica em baixo e em cima
+
+Divisão de frações
+Multiplicar pela fração invertida
+2/3 / 5/9
+2/3 * 9/5
+18/15 = 6/5
+
+Exercícios
+
+Nível 1
+1. 2/5 + 1/5 = 3/5
+2. 7/9 - 4/9 = 3/9 = 1/3
+3. 3/4 * 2/3 = 6/12 = 3/6 = 1/3
+4. 6/7 / 3/7 = 6/7 * 7/3 = 42/21 = 14/7 = 2/1
+
+ou
+3/4 * 2/3 = 1/4 * 2/1 = 2/4 = 1/2
+
+Multiplicação e divisão com números decimais
+Na multiplicação de números decimais, multiplica-se normalmente desconsiderando a vírgula e no resultado é só contar os números após a vírgula e adicionar ao resultado, por exemplo:
+
+80% de 25 = 
+ 25
+* 0,08
+ 200
+ 00
+00
+02,00 = 2 
+
+70% de 3
+
+ 3
+*0,07
+  21
+  0
+ 0
+ 0,21
+
+Divisões com números decimais
+2,5 / 3 
+Uma técnica para dividir números decimais é transformar a operação em uma fração e multiplicar por 10 o numerador e denominador por 10, isso facilita a operação.
+2,5/ 3 = 25/30 
+25 /30
+250  0,83
+240
+ 100
+  90
+
+Porcentagens
+Passo a passo da técnica
+1-Caminhar a vírgula da direita para a esquerda de acordo com a quantidade de zeros.
+2-Cortar os zeros do número decimal e do número total de acordo com sua quantidade.
+3-Multiplicar o número decimal pelo número simplificado.
+7% 100
+0,07 => 0,7 *10 => 7
+
+5% 100 
+0,05 => 0,5 *10 =>5
+
+3% 1000
+0,003 => 0,3 *10 => 3
+
+9% 100
+0,09 *100 => 0,9 *10 = 9
+
+Métodos práticos
+Suponhamos que queremos realizar operações com várias porcentagens ao mesmo tempo, exemplo:
+20% * 30% * 40%
+Podemos realizar essa operação de duas formas convertendo os números em decimais ou convertendo em frações.
+
+em decimais
+0,2 * 0,3 * 0,4 = 0,024
+
+0,3
+0,2
+  06
+ 00
+ 0,06
+
+0,4
+0,06
+  24
+ 00
+000
+0,024
+ 
+em frações
+20/100 * 30/100 * 40/100= 24000/1000000 = 0,024
+
+
+Potenciação e Radiciação
+
+O que é potenciação?
+A potenciação é uma forma de simplificar e escrever números muito grandes. Dessa forma, escrevemos a base e o expoente como número de repetição encontrando o resultado, exemplo:
+
+2³ = 2.2.2 = 8(sendo 2 a base 3 o expoente e 8 a potência)
+3³ = 3.3.3 = 27
+4² = 4.4 = 16
+5³ = 5.5.5 = 125
+6³ = 6.6.6 = 216
+
+Também pode ser escrito no formato 10^2, usando o símbolo ^ para indicar que o número está sendo elevado.
+
+Potenciação de frações
+(2/4)² = 2/4 . 2/4 = 4/16
+
+*Importante
+
+Todo número elevado ao expoente ¹ é ele mesmo.
+
+Todo número natural não nulo quando elevado ⁰, zero, é igual a 1, exemplo 4⁰ = 1.
+
+Todo número negativo elevado a um expoente par tem resultado positivo, por exemplo,(-2)² = 4.
+
+Todo número negativo elevado a um expoente ímpar tem resultado negativo, por exemplo,(-2)³ = -8.
+
+Toda base inteira elevada a um expoente negativo é o inverso da base elevada ao módulo(positivo) do expoente, por exemplo, 2⁻¹ = 1/2¹.
+
+Toda a base fracionária elevada a um expoente negativo é o inverso da base elevada ao módulo(positivo) do expoente, por exemplo, (2/3)⁻⁴ = (3/2)⁴
+
+Propriedades da potenciação
+
+1. Produto de potências de mesma base
+Definição: repete-se a base e somam-se os expoentes.
+
+Exemplo: 2^2 + 2^3 = 2^5 = 2.2.2.2.2 = 32
+
+2. Divisão de potência de mesma base.
+Definição: repete-se a base e subtraem-se os expoentes.
+
+Exemplo: 2^3 : 2^2 = 2^1 = 2
+
+3. Potência de potência
+Definição: Mantém as bases e multiplicam-se os expoentes.
+Exemplo:(2^2)^3 = 2^6 = 64
+
+4.Distributiva em relação à multiplicação
+Definição: Multiplicam-se as bases e mantém-se o expoente.
+
+Exemplo:2^2.3^2.4^2 =(2.3.4)^2 = 24^2 = 576
+
+5. Distributiva em relação à divisão
+Definição: dividem-se as bases e mantém-se o expoente.
+
+Exemplo:
+
+
+Exercícios de potenciação
+
+1. 2^3 = 2.2.2 = 8
+2. 5^2 = 5.5 = 25
+3. 10^3 = 10.10.10 = 1000
+4. 3^4 = 3.3.3.3 = 81
+5. 7^2 = 7.7 = 49
+
+6. 9^1 = 9
+7. 4^0 = 1
+8. 15^0 = 1
+9. 1^100 = 1
+10. 100^0 = 1
+
+11. -2^2 = -4 
+12. (-2)^2 = 4
+13. -3^3 = -27
+14. (-3)^3 = -27
+15. (-4)^2 = 16
+
+16. 2^-1 = 1/2^1
+17. 5^-2 = 1/5 ^2 = 1/25
+18. 10^-3 = 1/10 ^-3 = -1/-100
+19. 4^-1 = 1/4 ^-1 = -1/-4
+20. 3^-2 = 1/3^-2 = -1/-9
+
+21. 2^3 * 2^2 = 2^6 = 2.2.2.2.2.2 = 64
+22. 5^3 : 5^2 = 5^1 = 5
+23. (3^2)^2 = 3^6 = 3.3.3.3.3.3 = 729
+24. 10^2 : 10^4 = 10^2 = 100
+25. (-2)^3 * (-2)^2 = (-2)^5 = 2.2.2.2.2 = -32
+
+
+E o que é radiciação?
+Radiciação nada mais é do que o processo inverso da potenciação. O objetivo da escrita é encontrar a raiz desse número, exemplo:
+
+√36 = √6² = 6
+
+Razão e Proporção
+
+Razão é uma comparação entre duas grandezas através da divisão, dessa forma a grandeza a divide a grandeza b, resultando no quociente, resto da divisão, também chamado de razão.
+a / b
+10 / 5 = 2/1
+
+* A razão procura responder qual a relação de A para B, ou seja quantas vezes um número é maior que o outro.
+
+Proporção
+É a busca pelo valor desconhecido, onde sabemos que temos uma relação entre duas proporções. Por exemplo, uma regra de 3.  
+
+
+
+
+
+
+
