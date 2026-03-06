@@ -252,7 +252,8 @@ border-radius:0;
 /* área do jogo menor para o teclado */
 
 #area{
-height:calc(100% - 160px);
+/*height:calc(100% - 160px);*/
+height: 300px;
 }
 
 /* box menor */
