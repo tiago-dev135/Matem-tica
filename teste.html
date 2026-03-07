@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Math Challenge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
 
 *{
-margin:0;
-padding:0;
 box-sizing:border-box;
 font-family:Arial;
 }
@@ -21,10 +20,8 @@ padding:40px 0;
 }
 
 #game{
-width:900px;
-max-width:95%;
-height:80vh;
-max-height:600px;
+width:80%;
+height:600px;
 margin:0 auto;
 background:#1e293b;
 border-radius:12px;
@@ -129,7 +126,23 @@ max-width:90%;
 font-size:22px;
 padding:20px;
 }
+@media(max-width:600px){
 
+#area{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.box{
+position:absolute;
+left:40%;
+top:50%;
+transform:translate(-50%,-50%);
+width:200px;
+}
+
+}
 .box input{
 padding:8px;
 border:none;
