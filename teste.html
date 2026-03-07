@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Math Challenge</title>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#0f172a;
+padding:40px 0;
+}
+
+#game{
+width:900px;
+max-width:95%;
+height:80vh;
+max-height:600px;
+margin:0 auto;
+background:#1e293b;
+border-radius:12px;
+overflow:hidden;
+position:relative;
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+background:#020617;
+color:white;
+font-size:18px;
+border-bottom:2px solid #0ea5e9;
+}
+
+#progressContainer{
+width:100%;
+height:8px;
+background:#1e293b;
+}
+
+#progressBar{
+height:8px;
+width:0%;
+background:linear-gradient(90deg,#22c55e,#4ade80);
+transition:0.3s;
+}
+
+#area{
+position:relative;
+width:100%;
+height:calc(100% - 70px);
+overflow:hidden;
+}
+
+/* START SCREEN */
+
+#startScreen{
+position:absolute;
+width:100%;
+height:100%;
+background-image:url("imgjogo.png");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:30px;
+z-index:10;
+}
+
+#startScreen::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.gameTitle{
+font-size:40px;
+color:white;
+z-index:2;
+}
+
+#startBtn{
+z-index:2;
+padding:18px 40px;
+font-size:22px;
+border:none;
+border-radius:10px;
+background:#22c55e;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+#startBtn:hover{
+transform:scale(1.05);
+background:#16a34a;
+}
+
+.box{
+position:absolute;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:12px;
+border:2px solid rgba(255,255,255,0.2);
+display:flex;
+flex-direction:column;
+gap:10px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+transition:all 10s linear;
+min-width:160px;
+max-width:90%;
+font-size:22px;
+padding:20px;
+}
+
+.box input{
+padding:8px;
+border:none;
+border-radius:6px;
+font-size:18px;
+outline:none;
+}
+
+.box button{
+padding:10px;
+border:none;
+border-radius:6px;
+background:#0ea5e9;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+.box button:hover{
+background:#0284c7;
+}
+
+#timer{
+color:#facc15;
+font-weight:bold;
+}
+
+.materias{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+z-index:2;
+}
+
+.materias button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#0ea5e9;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="game">
+
+<header>
+<div>❤️ <span id="vidas">5</span></div>
+<div>Nível <span id="nivel">1</span></div>
+<div>⭐ <span id="pontos">0</span></div>
+<div>⏱ <span id="timer">10</span></div>
+</header>
+
+<div id="progressContainer">
+<div id="progressBar"></div>
+</div>
+
+<div id="area">
+
+<div id="startScreen">
+
+<h1 class="gameTitle">Math Challenge</h1>
+
+<div class="materias">
+
+<button onclick="selecionarMateria('matematica')">Matemática</button>
+<button onclick="selecionarMateria('historia')">História</button>
+<button onclick="selecionarMateria('geografia')">Geografia</button>
+<button onclick="selecionarMateria('quimica')">Química</button>
+<button onclick="selecionarMateria('fisica')">Física</button>
+<button onclick="selecionarMateria('enem')">Questões ENEM</button>
+
+</div>
+
+<button id="startBtn">Iniciar Game</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- SONS -->
+
+<audio id="startSound"><source src="start.mp3"></audio>
+<audio id="bgMusic" loop><source src="loop.mp3"></audio>
+<audio id="correctSound"><source src="correct.mp3"></audio>
+<audio id="wrongSound"><source src="wrong.mp3"></audio>
+
+<script>
+
+/* VARIÁVEIS */
+
+let materiaAtual="matematica"
+let vidas=5
+let pontos=0
+let nivel=1
+let resposta
+let progresso=0
+let metaNivel=5
+let tempo=10
+let intervalo
+
+/* BANCO DE PERGUNTAS */
+
+const perguntas={
+
+historia:[
+
+{texto:"Ano do descobrimento do Brasil",resp:1500},
+{texto:"Ano da independência do Brasil",resp:1822},
+{texto:"Ano da proclamação da república",resp:1889},
+{texto:"Ano do fim da segunda guerra mundial",resp:1945},
+{texto:"Ano da queda do muro de Berlim",resp:1989},
+
+{texto:"Ano da revolução francesa",resp:1789},
+{texto:"Ano da chegada do homem na lua",resp:1969},
+{texto:"Ano da primeira guerra mundial",resp:1914},
+{texto:"Ano do fim da primeira guerra",resp:1918},
+{texto:"Ano da revolução russa",resp:1917},
+
+{texto:"Ano da abolição da escravidão",resp:1888},
+{texto:"Ano da constituição brasileira atual",resp:1988},
+{texto:"Ano da guerra do Paraguai início",resp:1864},
+{texto:"Ano da guerra fria início",resp:1947},
+{texto:"Ano da queda do império romano ocidental",resp:476},
+
+{texto:"Ano do ataque às torres gêmeas",resp:2001},
+{texto:"Ano da fundação de Roma",resp:-753},
+{texto:"Ano da independência dos EUA",resp:1776},
+{texto:"Ano da coroação de Napoleão",resp:1804},
+{texto:"Ano da crise de 1929",resp:1929},
+
+{texto:"Ano da primeira olimpíada moderna",resp:1896},
+{texto:"Ano da chegada de Cabral ao Brasil",resp:1500},
+{texto:"Ano da revolução mexicana",resp:1910},
+{texto:"Ano do tratado de Versailles",resp:1919},
+{texto:"Ano da independência da Índia",resp:1947},
+
+{texto:"Ano da criação da ONU",resp:1945},
+{texto:"Ano da guerra do Vietnã início",resp:1955},
+{texto:"Ano do fim da guerra do Vietnã",resp:1975},
+{texto:"Ano do início da ditadura militar no Brasil",resp:1964},
+{texto:"Ano do fim da ditadura militar no Brasil",resp:1985},
+
+{texto:"Ano da descoberta da América por Colombo",resp:1492},
+{texto:"Ano da revolução industrial início",resp:1760},
+{texto:"Ano da independência do México",resp:1810},
+{texto:"Ano da criação da OTAN",resp:1949},
+{texto:"Ano da guerra da Coreia início",resp:1950},
+
+{texto:"Ano do fim da guerra da Coreia",resp:1953},
+{texto:"Ano da independência da Argentina",resp:1816},
+{texto:"Ano da independência do Chile",resp:1818},
+{texto:"Ano da independência do Peru",resp:1821},
+{texto:"Ano da independência da Colômbia",resp:1810}
+
+],
+
+geografia:[
+
+{texto:"Quantos continentes existem",resp:6},
+{texto:"Quantos oceanos existem",resp:5},
+{texto:"Quantos estados tem o Brasil",resp:26},
+{texto:"Quantos países existem no mundo aprox",resp:195},
+{texto:"Altura aproximada do Everest (m)",resp:8848},
+
+{texto:"Maior país do mundo área",resp:1},
+{texto:"Maior floresta do mundo",resp:1},
+{texto:"Maior deserto quente",resp:1},
+{texto:"Maior rio do mundo extensão",resp:1},
+{texto:"Maior lago de água doce",resp:1},
+
+{texto:"Quantos fusos horários no Brasil",resp:4},
+{texto:"Quantos biomas principais no Brasil",resp:6},
+{texto:"População do Brasil milhões aprox",resp:214},
+{texto:"Maior estado do Brasil área",resp:1},
+{texto:"Menor estado do Brasil área",resp:1},
+
+{texto:"Capital do Brasil criada em",resp:1960},
+{texto:"Quantos países na América do Sul",resp:12},
+{texto:"Quantos países na Europa aprox",resp:44},
+{texto:"Quantos países na África aprox",resp:54},
+{texto:"Quantos países na Ásia aprox",resp:49},
+
+{texto:"Quantos países na América Central",resp:7},
+{texto:"Quantos países na América do Norte",resp:3},
+{texto:"Maior oceano do mundo",resp:1},
+{texto:"Maior cadeia montanhosa",resp:1},
+{texto:"Maior ilha do mundo",resp:1},
+
+{texto:"Maior país da América do Sul",resp:1},
+{texto:"Rio que corta o Egito",resp:1},
+{texto:"Deserto no norte da África",resp:1},
+{texto:"Montanha mais alta da África",resp:1},
+{texto:"Maior lago da África",resp:1},
+
+{texto:"Maior país da Europa área",resp:1},
+{texto:"Maior país da África área",resp:1},
+{texto:"País mais populoso do mundo",resp:1},
+{texto:"Segundo país mais populoso",resp:1},
+{texto:"Maior cidade do mundo população",resp:1},
+
+{texto:"Capital da França",resp:1},
+{texto:"Capital da Espanha",resp:1},
+{texto:"Capital da Itália",resp:1},
+{texto:"Capital da Alemanha",resp:1},
+{texto:"Capital do Japão",resp:1}
+
+]
+
+}
+
+/* MATEMÁTICA */
+
+function gerarConta(){
+
+if(materiaAtual==="matematica"){
+
+let n1=Math.floor(Math.random()*20)+1
+let n2=Math.floor(Math.random()*20)+1
+
+let ops=["+","-","*"]
+let op=ops[Math.floor(Math.random()*3)]
+
+if(op==="+")resposta=n1+n2
+if(op==="-")resposta=n1-n2
+if(op==="*")resposta=n1*n2
+
+return `${n1} ${op} ${n2}`
+
+}
+
+let lista=perguntas[materiaAtual]
+
+let p=lista[Math.floor(Math.random()*lista.length)]
+
+resposta=p.resp
+return p.texto
+
+}
+
+/* TIMER */
+
+function iniciarTimer(){
+
+tempo=10
+document.getElementById("timer").innerText=tempo
+
+clearInterval(intervalo)
+
+intervalo=setInterval(()=>{
+
+tempo--
+document.getElementById("timer").innerText=tempo
+
+if(tempo<=0){
+
+clearInterval(intervalo)
+
+vidas--
+document.getElementById("vidas").innerText=vidas
+
+document.getElementById("wrongSound").play()
+
+Swal.fire({
+title:"Tempo acabou",
+text:"Resposta correta: "+resposta,
+icon:"error"
+}).then(()=>{
+
+if(vidas<=0){
+gameOver()
+}else{
+novaRodada()
+}
+
+})
+
+}
+
+},1000)
+
+}
+
+/* BOX */
+
+function criarBox(){
+
+let area=document.getElementById("area")
+area.innerHTML=""
+
+let box=document.createElement("div")
+box.className="box"
+
+box.style.left="40%"
+box.style.top="40%"
+
+let label=document.createElement("label")
+label.innerText=gerarConta()
+
+let input=document.createElement("input")
+
+let btn=document.createElement("button")
+btn.innerText="Confirmar"
+
+function verificar(){
+
+clearInterval(intervalo)
+
+let valor=Number(input.value)
+
+if(valor===resposta){
+
+document.getElementById("correctSound").play()
+
+pontos+=10
+progresso++
+
+document.getElementById("pontos").innerText=pontos
+
+if(progresso>=metaNivel){
+proximoNivel()
+}else{
+novaRodada()
+}
+
+}else{
+
+document.getElementById("wrongSound").play()
+
+vidas--
+document.getElementById("vidas").innerText=vidas
+
+Swal.fire({
+title:"Resposta incorreta",
+text:"Resposta correta: "+resposta,
+icon:"error",
+confirmButtonText:"Continuar"
+}).then(()=>{
+
+if(vidas<=0){
+gameOver()
+}else{
+novaRodada()
+}
+
+})
+
+}
+
+}
+
+btn.onclick=verificar
+
+input.addEventListener("keydown",function(e){
+if(e.key==="Enter"){
+verificar()
+}
+})
+
+box.appendChild(label)
+box.appendChild(input)
+box.appendChild(btn)
+
+area.appendChild(box)
+
+setTimeout(()=>input.focus(),100)
+
+iniciarTimer()
+
+}
+
+/* NÍVEL */
+
+function proximoNivel(){
+
+Swal.fire({
+title:"Parabéns",
+text:"Você passou de nível",
+icon:"success"
+}).then(()=>{
+
+nivel++
+progresso=0
+metaNivel+=2
+
+document.getElementById("nivel").innerText=nivel
+
+novaRodada()
+
+})
+
+}
+
+function selecionarMateria(materia){
+
+materiaAtual=materia
+
+Swal.fire({
+title:"Matéria selecionada",
+text:materia.toUpperCase(),
+icon:"success",
+timer:1000,
+showConfirmButton:false
+})
+
+}
+
+function gameOver(){
+
+Swal.fire({
+title:"Game Over",
+text:"Pontuação: "+pontos,
+icon:"error"
+}).then(()=>{
+location.reload()
+})
+
+}
+
+function novaRodada(){
+criarBox()
+}
+
+document.getElementById("startBtn").onclick=()=>{
+
+document.getElementById("startSound").play()
+
+setTimeout(()=>{
+
+document.getElementById("startScreen").style.display="none"
+
+let music=document.getElementById("bgMusic")
+music.volume=0.3
+music.play()
+
+novaRodada()
+
+},400)
+
+}
+
+</script>
+
+</body>
+</html>
