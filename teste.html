@@ -2,53 +2,72 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Math Challenge</title>
+<title>Einstein Math Game</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <style>
 
-*{box-sizing:border-box;font-family:Arial;}
-
-body{background:#0f172a;padding:40px 0;}
+body{
+margin:0;
+background:#0f172a;
+font-family:Arial;
+display:flex;
+justify-content:center;
+padding-top:40px;
+}
 
 #game{
-width:80%;
+width:800px;
 height:600px;
-margin:auto;
 background:#1e293b;
 border-radius:12px;
 overflow:hidden;
-position:relative;
-box-shadow:0 15px 40px rgba(0,0,0,0.6);
+box-shadow:0 20px 50px rgba(0,0,0,0.6);
 }
 
 header{
 display:flex;
-justify-content:space-between;
-padding:15px 20px;
+justify-content:space-around;
 background:#020617;
 color:white;
-border-bottom:2px solid #0ea5e9;
+padding:12px;
+font-size:18px;
 }
 
-#area{position:relative;height:calc(100% - 70px);}
+#area{
+height:100%;
+position:relative;
+}
 
-/* START */
-
-#startScreen{
+.tela{
 position:absolute;
 width:100%;
 height:100%;
-background:url("imgjogo.png");
-background-size:cover;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-gap:30px;
-z-index:10;
+gap:20px;
+color:white;
+}
+
+button{
+padding:12px 22px;
+border:none;
+border-radius:10px;
+background:#0ea5e9;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0284c7;
+}
+
+#startScreen{
+background:url("alberteinstein.jpg");
+background-size:cover;
 }
 
 #startScreen::before{
@@ -59,178 +78,33 @@ height:100%;
 background:rgba(0,0,0,0.6);
 }
 
-.gameTitle{font-size:40px;color:white;z-index:2;}
-
-.materias{display:flex;gap:10px;z-index:2;}
-
-.materias button{
-padding:10px 20px;
-border:none;
-border-radius:8px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
+#startScreen *{
+z-index:2;
 }
 
-/* NIVEIS */
-
-#niveisEnsino{
-display:none;
-position:absolute;
-width:100%;
-height:100%;
-background:#020617;
-z-index:15;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-gap:20px;
-color:white;
-}
-
-#niveisEnsino button{
-padding:18px 30px;
-border:none;
-border-radius:12px;
-font-size:18px;
-background:linear-gradient(135deg,#0ea5e9,#2563eb);
-color:white;
-cursor:pointer;
-width:250px;
-}
-
-/* TOPICOS */
-
-#topicosMatematica{
-display:none;
-position:absolute;
-width:100%;
-height:100%;
-background:#020617;
-z-index:15;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-gap:20px;
-color:white;
-}
-
-.listaTopicos{
-width:100%;
-max-height:60vh;
-overflow-y:auto;
-display:flex;
-justify-content:center;
-}
-
-.grupoTopicos{
-display:none;
-flex-direction:column;
-gap:14px;
-width:90%;
-max-width:400px;
-}
-
-.topicoBtn{
-width:100%;
-padding:16px;
-border:none;
-border-radius:12px;
-background:linear-gradient(135deg,#0ea5e9,#2563eb);
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-/* BOTÕES */
-
-.fecharTopicos{
-position:absolute;
-top:20px;
-right:25px;
-width:40px;
-height:40px;
-border:none;
-border-radius:50%;
-background:#ef4444;
-color:white;
-cursor:pointer;
-}
-
-.voltar{
-position:absolute;
-top:20px;
-left:25px;
-width:40px;
-height:40px;
-border:none;
-border-radius:50%;
-background:#334155;
-color:white;
-cursor:pointer;
-}
-
-/* DIFICULDADE */
-
-.dificuldadeBox{
+#boxPergunta{
 display:none;
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:90%;
-max-width:300px;
-background:#020617;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
 padding:25px;
 border-radius:12px;
-flex-direction:column;
-align-items:center;
-gap:15px;
-z-index:20;
 color:white;
+text-align:center;
+width:300px;
 }
 
-#btnIniciarTopico{
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-background:linear-gradient(135deg,#22c55e,#16a34a);
-color:white;
-cursor:pointer;
-}
-
-/* BOX PERGUNTA */
-
-.box{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(10px);
-border-radius:12px;
-display:flex;
-flex-direction:column;
-gap:10px;
-color:white;
-padding:20px;
-}
-
-.box input{
-padding:8px;
-border:none;
-border-radius:6px;
-font-size:18px;
-}
-
-.box button{
+#boxPergunta input{
 padding:10px;
-border:none;
+font-size:18px;
 border-radius:6px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
+border:none;
+margin-top:10px;
+width:150px;
+text-align:center;
 }
 
 </style>
@@ -242,76 +116,49 @@ cursor:pointer;
 
 <header>
 <div>❤️ <span id="vidas">5</span></div>
-<div>Nível <span id="nivel">1</span></div>
 <div>⭐ <span id="pontos">0</span></div>
+<div>📈 <span id="nivel">1</span></div>
 <div>⏱ <span id="timer">10</span></div>
 </header>
 
 <div id="area">
 
-<div id="startScreen">
-<h1 class="gameTitle">Math Challenge</h1>
-<div class="materias">
+<div id="startScreen" class="tela">
+<h1>Einstein Math</h1>
 <button onclick="selecionarMateria()">Matemática</button>
 </div>
-</div>
 
-<div id="niveisEnsino">
+<div id="niveisEnsino" class="tela" style="display:none">
 
-<button class="voltar" onclick="voltarInicio()">←</button>
+<h2>Escolha o tipo de ensino</h2>
 
-<h2>Escolha o nível</h2>
-
-<button onclick="abrirTopicos('basico')">Ensino Básico</button>
 <button onclick="abrirTopicos('fundamental')">Ensino Fundamental</button>
 <button onclick="abrirTopicos('medio')">Ensino Médio</button>
+<button onclick="abrirTopicos('enem')">ENEM</button>
+
+<button onclick="modoSobrevivencia()">🧠 Modo Sobrevivência</button>
 
 </div>
 
-<div id="topicosMatematica">
+<div id="topicos" class="tela" style="display:none">
 
-<button class="voltar" onclick="voltarNiveis()">←</button>
-<button class="fecharTopicos" onclick="fecharTopicos()">✖</button>
+<h2>Escolha um tópico</h2>
 
-<h2>Escolha o tópico</h2>
+<div id="listaTopicos"></div>
 
-<div class="listaTopicos">
-
-<div class="grupoTopicos" id="topicosBasico">
-<button class="topicoBtn" onclick="selecionarTopico('soma')">Adição</button>
-<button class="topicoBtn" onclick="selecionarTopico('subtracao')">Subtração</button>
-<button class="topicoBtn" onclick="selecionarTopico('multiplicacao')">Multiplicação</button>
-<button class="topicoBtn" onclick="selecionarTopico('divisao')">Divisão</button>
-<button class="topicoBtn" onclick="selecionarTopico('tabuada')">Tabuada</button>
-</div>
-
-<div class="grupoTopicos" id="topicosFundamental">
-<button class="topicoBtn" onclick="selecionarTopico('fracoes')">Frações</button>
-<button class="topicoBtn" onclick="selecionarTopico('porcentagem')">Porcentagem</button>
-<button class="topicoBtn" onclick="selecionarTopico('regra3')">Regra de 3</button>
-<button class="topicoBtn" onclick="selecionarTopico('proporcao')">Razão e Proporção</button>
-<button class="topicoBtn" onclick="selecionarTopico('potencia')">Potenciação</button>
-</div>
-
-<div class="grupoTopicos" id="topicosMedio">
-<button class="topicoBtn" onclick="selecionarTopico('equacao1')">Equação 1º Grau</button>
-<button class="topicoBtn" onclick="selecionarTopico('equacao2')">Equação 2º Grau</button>
-<button class="topicoBtn" onclick="selecionarTopico('algebra')">Expressões Algébricas</button>
-</div>
+<button onclick="voltarEnsino()">Voltar</button>
 
 </div>
-</div>
 
-<div id="selecaoDificuldade" class="dificuldadeBox">
+<div id="boxPergunta">
 
-<h3 id="topicoEscolhido"></h3>
+<h2 id="pergunta"></h2>
 
-<label><input type="radio" name="dificuldade" value="facil" checked> Fácil</label>
-<label><input type="radio" name="dificuldade" value="medio"> Médio</label>
-<label><input type="radio" name="dificuldade" value="dificil"> Difícil</label>
-<label><input type="radio" name="dificuldade" value="enem"> ENEM</label>
+<input id="respostaInput">
 
-<button id="btnIniciarTopico" onclick="iniciarTopico()">Iniciar Game</button>
+<br><br>
+
+<button onclick="confirmar()">Responder</button>
 
 </div>
 
@@ -320,163 +167,268 @@ cursor:pointer;
 
 <script>
 
-let dificuldade="facil"
-let topicoAtual=""
-let vidas=5
-let pontos=0
-let nivel=1
-let resposta
-let tempo=10
-let intervalo
+/* ELEMENTOS */
+
+const perguntaEl = document.getElementById("pergunta")
+const input = document.getElementById("respostaInput")
+const timerEl = document.getElementById("timer")
 
 /* SONS */
 
-const somLoop=new Audio("sounds/loop.mp3")
-const somStart=new Audio("sounds/start.mp3")
-const somCorrect=new Audio("sounds/correct.mp3")
-const somWrong=new Audio("sounds/wrong.mp3")
-
+const somLoop = new Audio("sounds/loop.mp3")
 somLoop.loop=true
-somLoop.volume=0.3
 
-/* NOMES */
+const somStart = new Audio("sounds/start.mp3")
+const somCorrect = new Audio("sounds/correct.mp3")
+const somWrong = new Audio("sounds/wrong.mp3")
 
-const nomesTopicos={
-soma:"Adição",
-subtracao:"Subtração",
-multiplicacao:"Multiplicação",
-divisao:"Divisão",
-tabuada:"Tabuada",
-fracoes:"Frações",
-porcentagem:"Porcentagem",
-regra3:"Regra de 3",
-proporcao:"Razão e Proporção",
-potencia:"Potenciação",
-equacao1:"Equação 1º Grau",
-equacao2:"Equação 2º Grau",
-algebra:"Expressões Algébricas"
+/* VARIÁVEIS */
+
+let ensino=""
+let topico=""
+let resposta=0
+let explicacaoAtual=""
+
+let sobrevivencia=false
+
+let vidas=5
+let pontos=0
+let nivel=1
+
+let tempo=10
+let intervalo
+
+/* IA ADAPTATIVA */
+
+let desempenho = JSON.parse(localStorage.getItem("desempenho")) || {}
+
+function registrar(tipo){
+
+if(!desempenho[topico])
+desempenho[topico]={acertos:0,erros:0}
+
+if(tipo=="acerto")
+desempenho[topico].acertos++
+else
+desempenho[topico].erros++
+
+localStorage.setItem("desempenho",JSON.stringify(desempenho))
+
 }
 
-/* DICAS DE ESTUDO */
-
-const dicasEstudo={
-soma:"Treine somas mentais e agrupamento de dezenas.",
-subtracao:"Use a reta numérica para visualizar a subtração.",
-multiplicacao:"Memorize a tabuada e use decomposição.",
-divisao:"Divisão é o inverso da multiplicação.",
-tabuada:"Pratique as tabuadas diariamente.",
-fracoes:"Aprenda simplificação e equivalência.",
-porcentagem:"Porcentagem significa dividir por 100.",
-regra3:"Organize os valores em proporção.",
-proporcao:"Entenda grandezas proporcionais.",
-potencia:"Potência é multiplicação repetida.",
-equacao1:"Isolar a incógnita resolve a equação.",
-equacao2:"Use a fórmula de Bhaskara.",
-algebra:"Treine simplificação de expressões."
-}
-
-/* NAVEGAÇÃO */
+/* TELAS */
 
 function selecionarMateria(){
-startScreen.style.display="none"
-niveisEnsino.style.display="flex"
-}
 
-function voltarInicio(){
-niveisEnsino.style.display="none"
-startScreen.style.display="flex"
-}
-
-function abrirTopicos(nivel){
-
-niveisEnsino.style.display="none"
-topicosMatematica.style.display="flex"
-
-document.querySelectorAll(".grupoTopicos").forEach(g=>g.style.display="none")
-
-if(nivel==="basico") topicosBasico.style.display="flex"
-if(nivel==="fundamental") topicosFundamental.style.display="flex"
-if(nivel==="medio") topicosMedio.style.display="flex"
+document.getElementById("startScreen").style.display="none"
+document.getElementById("niveisEnsino").style.display="flex"
 
 }
 
-function voltarNiveis(){
-topicosMatematica.style.display="none"
-niveisEnsino.style.display="flex"
-}
+/* MODO SOBREVIVÊNCIA */
 
-function fecharTopicos(){
-topicosMatematica.style.display="none"
-startScreen.style.display="flex"
-}
+function modoSobrevivencia(){
 
-function selecionarTopico(topico){
-topicoAtual=topico
-topicoEscolhido.innerText="Tópico: "+nomesTopicos[topico]
-selecaoDificuldade.style.display="flex"
-}
+sobrevivencia=true
 
-/* INICIAR */
-
-function iniciarTopico(){
+document.getElementById("niveisEnsino").style.display="none"
+document.getElementById("boxPergunta").style.display="block"
 
 somStart.play()
 somLoop.play()
 
-document.querySelectorAll('input[name="dificuldade"]').forEach(r=>{
-if(r.checked)dificuldade=r.value
+novaPergunta()
+
+}
+
+/* TOPICOS */
+
+const topicosEnsino = {
+
+fundamental:["soma","subtracao","multiplicacao","divisao","tabuada"],
+
+medio:["fracoes","porcentagem","regra3","potencia","equacao"],
+
+enem:["algebra","geometria","estatistica","porcentagem","equacao2"]
+
+}
+
+function abrirTopicos(tipo){
+
+ensino=tipo
+
+document.getElementById("niveisEnsino").style.display="none"
+document.getElementById("topicos").style.display="flex"
+
+let lista=document.getElementById("listaTopicos")
+lista.innerHTML=""
+
+topicosEnsino[tipo].forEach(t=>{
+
+let b=document.createElement("button")
+b.innerText=t
+b.onclick=()=>iniciarTopico(t)
+
+lista.appendChild(b)
+
 })
 
-topicosMatematica.style.display="none"
-selecaoDificuldade.style.display="none"
+}
 
-novaRodada()
+function voltarEnsino(){
+
+document.getElementById("topicos").style.display="none"
+document.getElementById("niveisEnsino").style.display="flex"
 
 }
 
-/* GERADOR */
+/* INICIAR TOPICO */
 
-function gerarConta(){
+function iniciarTopico(t){
 
-let a=Math.floor(Math.random()*10)+1
-let b=Math.floor(Math.random()*10)+1
+topico=t
 
-if(topicoAtual==="soma"){resposta=a+b;return `${a}+${b}`}
-if(topicoAtual==="subtracao"){resposta=a-b;return `${a}-${b}`}
-if(topicoAtual==="multiplicacao"){resposta=a*b;return `${a}×${b}`}
+document.getElementById("topicos").style.display="none"
+document.getElementById("boxPergunta").style.display="block"
 
-if(topicoAtual==="divisao"){
-resposta=b
-return `${a*b} ÷ ${a}`
+somStart.play()
+somLoop.play()
+
+novaPergunta()
+
 }
 
-if(topicoAtual==="tabuada"){
+/* GERADOR DE NÚMEROS */
+
+function numero(){
+
+let base=10
+
+if(nivel>3) base=30
+if(nivel>6) base=80
+if(nivel>10) base=200
+
+return Math.floor(Math.random()*base)+1
+
+}
+
+/* IA SOBREVIVÊNCIA */
+
+function gerarSobrevivencia(){
+
+let tipo=Math.floor(Math.random()*6)
+
+let a=numero()
+let b=numero()
+
+switch(tipo){
+
+case 0:
+
+resposta=a+b
+
+return{
+pergunta:`Quanto é ${a} + ${b}?`,
+explicacao:`Somamos ${a} com ${b}. Resultado = ${resposta}`
+}
+
+case 1:
+
 resposta=a*b
-return `${a}×${b}`
+
+return{
+pergunta:`Se uma caixa tem ${a} bolas e existem ${b} caixas, quantas bolas existem no total?`,
+explicacao:`Multiplicamos ${a} × ${b} = ${resposta}`
 }
 
-if(topicoAtual==="porcentagem"){
+case 2:
+
+resposta=a-b
+
+return{
+pergunta:`João tinha ${a} maçãs e comeu ${b}. Quantas sobraram?`,
+explicacao:`Subtração ${a} - ${b} = ${resposta}`
+}
+
+case 3:
+
 resposta=(a*b)/100
-return `${b}% de ${a}`
+
+return{
+pergunta:`Quanto é ${a}% de ${b}?`,
+explicacao:`${a}% de ${b} = (${a} × ${b}) ÷ 100 = ${resposta}`
+}
+
+case 4:
+
+resposta=a/b
+
+return{
+pergunta:`Divida ${a} por ${b}. (decimal)`,
+explicacao:`${a} ÷ ${b} = ${resposta}`
+}
+
+case 5:
+
+resposta=a*a
+
+return{
+pergunta:`Qual é o quadrado de ${a}?`,
+explicacao:`${a}² = ${a} × ${a} = ${resposta}`
 }
 
 }
 
-/* NÍVEL */
+}
 
-function verificarNivel(){
+/* GERADOR NORMAL */
 
-if(pontos>=nivel*100){
+function gerar(){
 
-nivel++
-document.getElementById("nivel").innerText=nivel
+let a=numero()
+let b=numero()
 
-Swal.fire({
-title:"🎉 Subiu de nível!",
-text:"Agora você está no nível "+nivel,
-icon:"success",
-focusConfirm:false
-})
+switch(topico){
+
+case "soma":
+resposta=a+b
+explicacaoAtual=`Somamos ${a} + ${b}`
+return `${a} + ${b}`
+
+case "subtracao":
+resposta=a-b
+explicacaoAtual=`Subtração ${a} - ${b}`
+return `${a} - ${b}`
+
+case "multiplicacao":
+resposta=a*b
+explicacaoAtual=`Multiplicação ${a} × ${b}`
+return `${a} × ${b}`
+
+case "divisao":
+resposta=b
+explicacaoAtual=`${a*b} dividido por ${a} = ${b}`
+return `${a*b} ÷ ${a}`
+
+case "potencia":
+resposta=a*a
+explicacaoAtual=`${a}² = ${a} × ${a}`
+return `${a}²`
+
+case "equacao":
+resposta=a
+explicacaoAtual=`x + ${b} = ${a+b}`
+return `x + ${b} = ${a+b}`
+
+case "porcentagem":
+resposta=(a*b)/100
+explicacaoAtual=`${a}% de ${b}`
+return `${a}% de ${b}`
+
+default:
+resposta=a+b
+explicacaoAtual=`${a} + ${b}`
+return `${a} + ${b}`
 
 }
 
@@ -486,35 +438,29 @@ focusConfirm:false
 
 function iniciarTimer(){
 
-tempo=10
-timer.innerText=tempo
+tempo=10+(nivel*2)
+timerEl.innerText=tempo
 
 clearInterval(intervalo)
 
 intervalo=setInterval(()=>{
 
 tempo--
-timer.innerText=tempo
+timerEl.innerText=tempo
 
 if(tempo<=0){
 
 clearInterval(intervalo)
 
+vidas--
+vidasEl()
+
 somWrong.play()
 
-vidas--
-document.getElementById("vidas").innerText=vidas
-
-Swal.fire({
-title:"Tempo esgotado!",
-text:"A resposta correta era: "+resposta,
-icon:"info",
-timer:1500,
-showConfirmButton:false
-})
+alert("⏰ Tempo esgotado!\nResposta: "+resposta+"\n"+explicacaoAtual)
 
 if(vidas<=0)gameOver()
-else setTimeout(novaRodada,1500)
+else novaPergunta()
 
 }
 
@@ -522,91 +468,93 @@ else setTimeout(novaRodada,1500)
 
 }
 
-/* BOX */
+/* NOVA PERGUNTA */
 
-function criarBox(){
+function novaPergunta(){
 
-let old=document.querySelector(".box")
-if(old)old.remove()
+input.value=""
 
-let box=document.createElement("div")
-box.className="box"
+if(sobrevivencia){
 
-let label=document.createElement("label")
-label.innerText=gerarConta()
+let q=gerarSobrevivencia()
 
-let input=document.createElement("input")
+perguntaEl.innerText=q.pergunta
+explicacaoAtual=q.explicacao
 
-let btn=document.createElement("button")
-btn.innerText="Confirmar"
+}else{
 
-btn.onclick=()=>{
+perguntaEl.innerText=gerar()
+
+}
+
+iniciarTimer()
+
+}
+
+/* CONFIRMAR */
+
+function confirmar(){
 
 clearInterval(intervalo)
 
-if(input.value==="")return
+let valor=parseFloat(input.value)
 
-if(parseFloat(input.value)==resposta){
+if(valor==resposta){
 
 somCorrect.play()
 
 pontos+=10
-document.getElementById("pontos").innerText=pontos
+pontosEl()
 
-verificarNivel()
 
-novaRodada()
+
+if(pontos>=nivel*100){
+nivel++
+nivelEl()
+}
 
 }else{
 
 somWrong.play()
 
 vidas--
+vidasEl()
+
+alert("❌ Errado!\nResposta: "+resposta+"\n\n"+explicacaoAtual)
+
+}
+
+if(vidas<=0){
+gameOver()
+}else{
+novaPergunta()
+}
+
+}
+
+/* UI */
+
+function vidasEl(){
 document.getElementById("vidas").innerText=vidas
-
-Swal.fire({
-title:"Resposta incorreta",
-text:"Resposta correta: "+resposta,
-icon:"warning",
-timer:1500,
-showConfirmButton:false
-})
-
-if(vidas<=0)gameOver()
-else setTimeout(novaRodada,1500)
-
 }
 
+function pontosEl(){
+document.getElementById("pontos").innerText=pontos
 }
 
-box.appendChild(label)
-box.appendChild(input)
-box.appendChild(btn)
-
-area.appendChild(box)
-
-input.focus()
-
-iniciarTimer()
-
+function nivelEl(){
+document.getElementById("nivel").innerText=nivel
 }
 
-function novaRodada(){
-criarBox()
-}
+/* GAME OVER */
 
 function gameOver(){
 
 somLoop.pause()
 
-let dica=dicasEstudo[topicoAtual] || "Continue praticando!"
+alert("Game Over\nPontuação: "+pontos)
 
-Swal.fire({
-title:"Game Over",
-html:`Pontuação: <b>${pontos}</b><br><br>📚 <b>Dica:</b><br>${dica}`,
-icon:"error",
-focusConfirm:false
-}).then(()=>location.reload())
+location.reload()
 
 }
 

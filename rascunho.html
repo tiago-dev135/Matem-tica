@@ -9,15 +9,9 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-font-family:Arial;
-}
+*{box-sizing:border-box;font-family:Arial;}
 
-body{
-background:#0f172a;
-padding:40px 0;
-}
+body{background:#0f172a;padding:40px 0;}
 
 #game{
 width:80%;
@@ -39,29 +33,13 @@ color:white;
 border-bottom:2px solid #0ea5e9;
 }
 
-#progressContainer{
-height:8px;
-background:#1e293b;
-}
-
-#progressBar{
-height:8px;
-width:0%;
-background:linear-gradient(90deg,#22c55e,#4ade80);
-}
-
-#area{
-position:relative;
-height:calc(100% - 70px);
-}
-
-/* START SCREEN */
+#area{position:relative;height:calc(100% - 70px);}
 
 #startScreen{
 position:absolute;
 width:100%;
 height:100%;
-background:url("imgjogo.png");
+background:url("alberteinstein.jpg");
 background-size:cover;
 display:flex;
 justify-content:center;
@@ -79,18 +57,9 @@ height:100%;
 background:rgba(0,0,0,0.6);
 }
 
-.gameTitle{
-font-size:40px;
-color:white;
-z-index:2;
-}
+.gameTitle{font-size:40px;color:white;z-index:2;}
 
-.materias{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-z-index:2;
-}
+.materias{display:flex;gap:10px;z-index:2;}
 
 .materias button{
 padding:10px 20px;
@@ -101,7 +70,125 @@ color:white;
 cursor:pointer;
 }
 
-/* BOX PERGUNTA */
+#niveisEnsino{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+background:#020617;
+z-index:15;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+color:white;
+}
+
+#niveisEnsino button{
+padding:18px 30px;
+border:none;
+border-radius:12px;
+font-size:18px;
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+color:white;
+cursor:pointer;
+width:250px;
+}
+
+#topicosMatematica{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+background:#020617;
+z-index:15;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+color:white;
+}
+
+.listaTopicos{
+width:100%;
+max-height:60vh;
+overflow-y:auto;
+display:flex;
+justify-content:center;
+}
+
+.grupoTopicos{
+display:none;
+flex-direction:column;
+gap:14px;
+width:90%;
+max-width:400px;
+}
+
+.topicoBtn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+.fecharTopicos{
+position:absolute;
+top:20px;
+right:25px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:#ef4444;
+color:white;
+cursor:pointer;
+}
+
+.voltar{
+position:absolute;
+top:20px;
+left:25px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:#334155;
+color:white;
+cursor:pointer;
+}
+
+.dificuldadeBox{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:300px;
+background:#020617;
+padding:25px;
+border-radius:12px;
+flex-direction:column;
+align-items:center;
+gap:15px;
+z-index:20;
+color:white;
+}
+
+#btnIniciarTopico{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:white;
+cursor:pointer;
+}
 
 .box{
 position:absolute;
@@ -111,12 +198,10 @@ transform:translate(-50%,-50%);
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(10px);
 border-radius:12px;
-border:2px solid rgba(255,255,255,0.2);
 display:flex;
 flex-direction:column;
 gap:10px;
 color:white;
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
 padding:20px;
 }
 
@@ -136,138 +221,6 @@ color:white;
 cursor:pointer;
 }
 
-#timer{
-color:#facc15;
-font-weight:bold;
-}
-
-/* TELA TOPICOS */
-
-#topicosMatematica{
-display:none;
-position:absolute;
-width:100%;
-height:100%;
-background:#020617;
-z-index:15;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-gap:20px;
-color:white;
-}
-
-.topicoBtn{
-padding:15px 28px;
-font-weight:bold;
-border:none;
-border-radius:12px;
-color:white;
-background:linear-gradient(135deg,#0ea5e9,#2563eb);
-cursor:pointer;
-}
-
-.topicoBtn:hover{
-transform:scale(1.05);
-}
-
-/* BOTÃO FECHAR */
-
-.fecharTopicos{
-position:absolute;
-top:20px;
-right:25px;
-width:40px;
-height:40px;
-border:none;
-border-radius:50%;
-background:#ef4444;
-color:white;
-cursor:pointer;
-}
-
-/* DIFICULDADE */
-
-.dificuldadeBox{
-
-display:none;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:90%;
-max-width:300px;
-background:#020617;
-padding:25px;
-border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,0.7);
-flex-direction:column;
-align-items:center;
-gap:15px;
-z-index:20;
-
-}
-
-.dificuldadeBox label{
-display:flex;
-gap:8px;
-font-size:18px;
-cursor:pointer;
-}
-
-.dificuldadeBox input{
-transform:scale(1.4);
-}
-
-#btnIniciarTopico{
-width:100%;
-padding:14px;
-font-size:16px;
-border:none;
-border-radius:10px;
-background:linear-gradient(135deg,#22c55e,#16a34a);
-color:white;
-cursor:pointer;
-}
-
-#topicoEscolhido{
-font-weight:bold;
-color:#38bdf8;
-}
-
-.voltarDificuldade{
-
-position:absolute;
-
-top:10px;
-left:10px;
-
-width:35px;
-height:35px;
-
-border:none;
-border-radius:50%;
-
-background:#334155;
-
-color:white;
-
-font-size:18px;
-
-cursor:pointer;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-}
-
-.voltarDificuldade:hover{
-
-background:#475569;
-
-}
-
 </style>
 </head>
 
@@ -282,39 +235,69 @@ background:#475569;
 <div>⏱ <span id="timer">10</span></div>
 </header>
 
-<div id="progressContainer">
-<div id="progressBar"></div>
-</div>
-
 <div id="area">
 
 <div id="startScreen">
-
-<h1 class="gameTitle">Math Challenge</h1>
-
+<h1 class="gameTitle">Einstein Game</h1>
 <div class="materias">
 <button onclick="selecionarMateria()">Matemática</button>
 </div>
+</div>
+
+<div id="niveisEnsino">
+
+<button class="voltar" onclick="voltarInicio()">←</button>
+
+<h2>Escolha o nível</h2>
+
+<button onclick="abrirTopicos('basico')">Ensino Básico</button>
+<button onclick="abrirTopicos('fundamental')">Ensino Fundamental</button>
+<button onclick="abrirTopicos('medio')">Ensino Médio</button>
 
 </div>
 
 <div id="topicosMatematica">
 
+<button class="voltar" onclick="voltarNiveis()">←</button>
 <button class="fecharTopicos" onclick="fecharTopicos()">✖</button>
 
 <h2>Escolha o tópico</h2>
 
-<button class="topicoBtn" onclick="selecionarTopico('decimal')">Soma de Decimais</button>
-<button class="topicoBtn" onclick="selecionarTopico('fracao')">Soma de Frações</button>
+<div class="listaTopicos">
+
+<div class="grupoTopicos" id="topicosBasico">
+<button class="topicoBtn" onclick="selecionarTopico('soma')">Adição</button>
+<button class="topicoBtn" onclick="selecionarTopico('subtracao')">Subtração</button>
+<button class="topicoBtn" onclick="selecionarTopico('multiplicacao')">Multiplicação</button>
+<button class="topicoBtn" onclick="selecionarTopico('divisao')">Divisão</button>
+<button class="topicoBtn" onclick="selecionarTopico('tabuada')">Tabuada</button>
+</div>
+
+<div class="grupoTopicos" id="topicosFundamental">
+<button class="topicoBtn" onclick="selecionarTopico('fracoes')">Frações</button>
+<button class="topicoBtn" onclick="selecionarTopico('porcentagem')">Porcentagem</button>
 <button class="topicoBtn" onclick="selecionarTopico('regra3')">Regra de 3</button>
 <button class="topicoBtn" onclick="selecionarTopico('proporcao')">Razão e Proporção</button>
+<button class="topicoBtn" onclick="selecionarTopico('potencia')">Potenciação</button>
+<button class="topicoBtn" onclick="selecionarTopico('tabelas')">Tabelas e Gráficos</button>
+<button class="topicoBtn" onclick="selecionarTopico('medidas')">Medidas</button>
+<button class="topicoBtn" onclick="selecionarTopico('geometria')">Geometria</button>
+<button class="topicoBtn" onclick="selecionarTopico('algebraFundamental')">Álgebra</button>
+<button class="topicoBtn" onclick="selecionarTopico('estatistica')">Estatística</button>
+</div>
+
+<div class="grupoTopicos" id="topicosMedio">
+<button class="topicoBtn" onclick="selecionarTopico('equacao1')">Equação 1º Grau</button>
+<button class="topicoBtn" onclick="selecionarTopico('equacao2')">Equação 2º Grau</button>
 <button class="topicoBtn" onclick="selecionarTopico('algebra')">Expressões Algébricas</button>
+</div>
+
+</div>
+</div>
 
 <div id="selecaoDificuldade" class="dificuldadeBox">
-<button class="voltarDificuldade" onclick="voltarTopicos()">←</button>
-<h3>Escolha a dificuldade</h3>
 
-<p id="topicoEscolhido"></p>
+<h3 id="topicoEscolhido"></h3>
 
 <label><input type="radio" name="dificuldade" value="facil" checked> Fácil</label>
 <label><input type="radio" name="dificuldade" value="medio"> Médio</label>
@@ -326,172 +309,190 @@ background:#475569;
 </div>
 
 </div>
-
 </div>
 
 <script>
+
+/* SONS */
+
+const somLoop = new Audio("sounds/loop.mp3")
+somLoop.loop=true
+
+const somStart = new Audio("sounds/start.mp3")
+const somCorrect = new Audio("sounds/correct.mp3")
+const somWrong = new Audio("sounds/wrong.mp3")
 
 /* VARIÁVEIS */
 
 let dificuldade="facil"
 let topicoAtual=""
+
 let vidas=5
 let pontos=0
 let nivel=1
+
 let resposta
-let progresso=0
-let metaNivel=5
 let tempo=10
 let intervalo
-let explicacao=""
 
-function voltarTopicos(){
-
-document.getElementById("selecaoDificuldade").style.display="none"
-
-}
-/* NOMES DOS TÓPICOS */
-
-const nomesTopicos={
-decimal:"Soma de Decimais",
-fracao:"Soma de Frações",
-regra3:"Regra de 3",
-proporcao:"Razão e Proporção",
-algebra:"Expressões Algébricas"
-}
-
-/* FUNÇÕES UI */
-
-function fecharTopicos(){
-document.getElementById("topicosMatematica").style.display="none"
-document.getElementById("selecaoDificuldade").style.display="none"
-}
+/* NAVEGAÇÃO */
 
 function selecionarMateria(){
-document.getElementById("topicosMatematica").style.display="flex"
+somStart.play()
+somLoop.play()
+startScreen.style.display="none"
+niveisEnsino.style.display="flex"
+}
+
+function voltarInicio(){
+niveisEnsino.style.display="none"
+startScreen.style.display="flex"
+}
+
+function abrirTopicos(nivel){
+
+niveisEnsino.style.display="none"
+topicosMatematica.style.display="flex"
+
+document.querySelectorAll(".grupoTopicos").forEach(g=>g.style.display="none")
+
+if(nivel==="basico") topicosBasico.style.display="flex"
+if(nivel==="fundamental") topicosFundamental.style.display="flex"
+if(nivel==="medio") topicosMedio.style.display="flex"
+
+}
+
+function voltarNiveis(){
+topicosMatematica.style.display="none"
+niveisEnsino.style.display="flex"
+}
+
+function fecharTopicos(){
+topicosMatematica.style.display="none"
+startScreen.style.display="flex"
 }
 
 function selecionarTopico(topico){
-
 topicoAtual=topico
-
-document.getElementById("topicoEscolhido").innerText=
-"Tópico: "+nomesTopicos[topico]
-
-document.getElementById("selecaoDificuldade").style.display="flex"
-
+topicoEscolhido.innerText="Tópico: "+topico
+selecaoDificuldade.style.display="flex"
 }
 
 function iniciarTopico(){
-
-if(!topicoAtual){
-alert("Escolha um tópico primeiro!")
-return
-}
-
-let radios=document.querySelectorAll('input[name="dificuldade"]')
-
-radios.forEach(r=>{
-if(r.checked)dificuldade=r.value
-})
-
-/* ESCONDER TELAS */
-
-document.getElementById("topicosMatematica").style.display="none"
-document.getElementById("selecaoDificuldade").style.display="none"
-document.getElementById("startScreen").style.display="none"
-
-/* INICIAR JOGO */
-
+dificuldade=document.querySelector('input[name="dificuldade"]:checked').value
+topicosMatematica.style.display="none"
+selecaoDificuldade.style.display="none"
 novaRodada()
-
 }
-/* GERADOR */
+
+/* GERADOR DE CONTAS */
 
 function gerarConta(){
 
-if(topicoAtual==="decimal"){
+let a=Math.floor(Math.random()*10)+1
+let b=Math.floor(Math.random()*10)+1
 
-let n1=(Math.random()*10).toFixed(1)
-let n2=(Math.random()*10).toFixed(1)
+switch(topicoAtual){
 
-resposta=(Number(n1)+Number(n2)).toFixed(1)
-
-explicacao=`${n1} + ${n2} = ${resposta}`
-
-return `${n1} + ${n2}`
-
-}
-
-if(topicoAtual==="fracao"){
-
-let a=Math.floor(Math.random()*4)+1
-let b=Math.floor(Math.random()*4)+1
-
+case "soma":
 resposta=a+b
+return `${a}+${b}`
 
-explicacao=`(${a}+${b})/2`
+case "subtracao":
+resposta=a-b
+return `${a}-${b}`
 
-return `${a}/2 + ${b}/2`
+case "multiplicacao":
+resposta=a*b
+return `${a}×${b}`
+
+case "divisao":
+resposta=b
+return `${a*b} ÷ ${a}`
+
+case "tabuada":
+resposta=a*b
+return `${a} × ${b}`
+
+case "fracoes":
+resposta=a/b
+return `${a}/${b} = ? (decimal)`
+
+case "porcentagem":
+resposta=(a*b)/100
+return `${a}% de ${b*10}`
+
+case "regra3":
+resposta=(b*20)/10
+return `Se 10 → 20 então ${b} → ?`
+
+case "proporcao":
+resposta=a/b
+return `${a}:${b} = ?`
+
+case "potencia":
+resposta=Math.pow(a,2)
+return `${a}²`
+
+case "tabelas":
+resposta=a+b
+return `Tabela: ${a} gatos e ${b} cães. Total?`
+
+case "medidas":
+resposta=a*100
+return `${a} metro(s) = ? centímetros`
+
+case "geometria":
+resposta=a*4
+return `Perímetro de quadrado lado ${a}`
+
+case "algebraFundamental":
+resposta=a
+return `x + ${b} = ${a+b}`
+
+case "estatistica":
+resposta=(a+b)/2
+return `Média de ${a} e ${b}`
+
+case "equacao1":
+resposta=a
+return `${a}+x=${a*2}`
+
+case "equacao2":
+resposta=1
+return `x² -1 =0`
+
+case "algebra":
+resposta=a+b
+return `Simplifique: ${a}+${b}`
 
 }
 
-if(topicoAtual==="regra3"){
-
-let base=500
-let col=3
-let novo=700
-
-resposta=((novo*col)/base).toFixed(1)
-
-explicacao=`${novo} × ${col} ÷ ${base}`
-
-return `Se ${base}ml usa ${col} colheres, quantas para ${novo}?`
-
 }
 
-if(topicoAtual==="proporcao"){
+/* NÍVEL */
 
-let a=2
-let b=4
-let c=6
-
-resposta=(b*c)/a
-
-explicacao=`${a}/${b} = ${c}/x`
-
-return `${a}/${b} = ${c}/x`
-
+function verificarNivel(){
+if(pontos>=nivel*100){
+nivel++
+document.getElementById("nivel").innerText=nivel
+Swal.fire("Subiu de nível!","Agora nível "+nivel,"success")
 }
-
-if(topicoAtual==="algebra"){
-
-let x=Math.floor(Math.random()*5)+1
-let a=Math.floor(Math.random()*5)+1
-
-resposta=a*x
-
-explicacao=`${a} × ${x}`
-
-return `Se x=${x}, quanto vale ${a}x ?`
-
-}
-
 }
 
 /* TIMER */
 
 function iniciarTimer(){
 
-tempo=10
-document.getElementById("timer").innerText=tempo
+tempo=10+(nivel-1)*10
+timer.innerText=tempo
 
 clearInterval(intervalo)
 
 intervalo=setInterval(()=>{
 
 tempo--
-document.getElementById("timer").innerText=tempo
+timer.innerText=tempo
 
 if(tempo<=0){
 
@@ -500,16 +501,12 @@ clearInterval(intervalo)
 vidas--
 document.getElementById("vidas").innerText=vidas
 
-Swal.fire({
-title:"Tempo acabou",
-html:`Resposta correta: <b>${resposta}</b><br>${explicacao}`,
-icon:"error"
-}).then(()=>{
+somWrong.play()
+
+Swal.fire("Tempo esgotado","Resposta: "+resposta,"info")
 
 if(vidas<=0)gameOver()
-else novaRodada()
-
-})
+else setTimeout(novaRodada,1500)
 
 }
 
@@ -517,11 +514,9 @@ else novaRodada()
 
 }
 
-/* CRIAR BOX */
+/* PERGUNTA */
 
 function criarBox(){
-
-let area=document.getElementById("area")
 
 let old=document.querySelector(".box")
 if(old)old.remove()
@@ -537,47 +532,36 @@ let input=document.createElement("input")
 let btn=document.createElement("button")
 btn.innerText="Confirmar"
 
-function verificar(){
+btn.onclick=()=>{
 
 clearInterval(intervalo)
 
-let valor=parseFloat(input.value)
+if(parseFloat(input.value)==resposta){
 
-if(valor==resposta){
+somCorrect.play()
 
 pontos+=10
-progresso++
-
 document.getElementById("pontos").innerText=pontos
 
-if(progresso>=metaNivel)proximoNivel()
-else novaRodada()
+verificarNivel()
+
+novaRodada()
 
 }else{
+
+somWrong.play()
 
 vidas--
 document.getElementById("vidas").innerText=vidas
 
-Swal.fire({
-title:"Resposta incorreta",
-html:`Resposta correta: <b>${resposta}</b><br>${explicacao}`,
-icon:"error"
-}).then(()=>{
+Swal.fire("Errado","Resposta correta: "+resposta,"warning")
 
 if(vidas<=0)gameOver()
-else novaRodada()
-
-})
+else setTimeout(novaRodada,1500)
 
 }
 
 }
-
-btn.onclick=verificar
-
-input.addEventListener("keypress",function(e){
-if(e.key==="Enter")verificar()
-})
 
 box.appendChild(label)
 box.appendChild(input)
@@ -591,37 +575,19 @@ iniciarTimer()
 
 }
 
-function proximoNivel(){
-
-Swal.fire({
-title:"Parabéns",
-text:"Você subiu de nível!",
-icon:"success"
-}).then(()=>{
-
-nivel++
-progresso=0
-metaNivel+=2
-
-document.getElementById("nivel").innerText=nivel
-
-novaRodada()
-
-})
-
-}
-
 function novaRodada(){
 criarBox()
 }
 
 function gameOver(){
 
-Swal.fire({
-title:"Game Over",
-text:"Pontuação: "+pontos,
-icon:"error"
-}).then(()=>location.reload())
+somLoop.pause()
+
+Swal.fire(
+"Game Over",
+"Pontuação: "+pontos,
+"error"
+).then(()=>location.reload())
 
 }
 
