@@ -9,20 +9,14 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-font-family:Arial;
-}
+*{box-sizing:border-box;font-family:Arial;}
 
-body{
-background:#0f172a;
-padding:40px 0;
-}
+body{background:#0f172a;padding:40px 0;}
 
 #game{
 width:80%;
 height:600px;
-margin:0 auto;
+margin:auto;
 background:#1e293b;
 border-radius:12px;
 overflow:hidden;
@@ -33,43 +27,22 @@ box-shadow:0 15px 40px rgba(0,0,0,0.6);
 header{
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:15px 20px;
 background:#020617;
 color:white;
-font-size:18px;
 border-bottom:2px solid #0ea5e9;
 }
 
-#progressContainer{
-width:100%;
-height:8px;
-background:#1e293b;
-}
+#area{position:relative;height:calc(100% - 70px);}
 
-#progressBar{
-height:8px;
-width:0%;
-background:linear-gradient(90deg,#22c55e,#4ade80);
-transition:0.3s;
-}
-
-#area{
-position:relative;
-width:100%;
-height:calc(100% - 70px);
-overflow:hidden;
-}
-
-/* START SCREEN */
+/* START */
 
 #startScreen{
 position:absolute;
 width:100%;
 height:100%;
-background-image:url("imgjogo.png");
+background:url("imgjogo.png");
 background-size:cover;
-background-position:center;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -86,69 +59,169 @@ height:100%;
 background:rgba(0,0,0,0.6);
 }
 
-.gameTitle{
-font-size:40px;
-color:white;
-z-index:2;
-}
+.gameTitle{font-size:40px;color:white;z-index:2;}
 
-#startBtn{
-z-index:2;
-padding:18px 40px;
-font-size:22px;
+.materias{display:flex;gap:10px;z-index:2;}
+
+.materias button{
+padding:10px 20px;
 border:none;
-border-radius:10px;
-background:#22c55e;
+border-radius:8px;
+background:#0ea5e9;
 color:white;
 cursor:pointer;
-transition:0.3s;
 }
 
-#startBtn:hover{
-transform:scale(1.05);
-background:#16a34a;
+/* NIVEIS */
+
+#niveisEnsino{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+background:#020617;
+z-index:15;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+color:white;
 }
+
+#niveisEnsino button{
+padding:18px 30px;
+border:none;
+border-radius:12px;
+font-size:18px;
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+color:white;
+cursor:pointer;
+width:250px;
+}
+
+/* TOPICOS */
+
+#topicosMatematica{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+background:#020617;
+z-index:15;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+color:white;
+}
+
+.listaTopicos{
+width:100%;
+max-height:60vh;
+overflow-y:auto;
+display:flex;
+justify-content:center;
+}
+
+.grupoTopicos{
+display:none;
+flex-direction:column;
+gap:14px;
+width:90%;
+max-width:400px;
+}
+
+.topicoBtn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+/* BOTÕES */
+
+.fecharTopicos{
+position:absolute;
+top:20px;
+right:25px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:#ef4444;
+color:white;
+cursor:pointer;
+}
+
+.voltar{
+position:absolute;
+top:20px;
+left:25px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:#334155;
+color:white;
+cursor:pointer;
+}
+
+/* DIFICULDADE */
+
+.dificuldadeBox{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:300px;
+background:#020617;
+padding:25px;
+border-radius:12px;
+flex-direction:column;
+align-items:center;
+gap:15px;
+z-index:20;
+color:white;
+}
+
+#btnIniciarTopico{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:white;
+cursor:pointer;
+}
+
+/* BOX PERGUNTA */
 
 .box{
 position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(10px);
 border-radius:12px;
-border:2px solid rgba(255,255,255,0.2);
 display:flex;
 flex-direction:column;
 gap:10px;
 color:white;
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
-transition:all 10s linear;
-min-width:160px;
-max-width:90%;
-font-size:22px;
 padding:20px;
 }
-@media(max-width:600px){
 
-#area{
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.box{
-position:absolute;
-left:40%;
-top:50%;
-transform:translate(-50%,-50%);
-width:200px;
-}
-
-}
 .box input{
 padding:8px;
 border:none;
 border-radius:6px;
 font-size:18px;
-outline:none;
 }
 
 .box button{
@@ -157,34 +230,6 @@ border:none;
 border-radius:6px;
 background:#0ea5e9;
 color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-.box button:hover{
-background:#0284c7;
-}
-
-#timer{
-color:#facc15;
-font-weight:bold;
-}
-
-.materias{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-justify-content:center;
-z-index:2;
-}
-
-.materias button{
-padding:10px 20px;
-border:none;
-border-radius:8px;
-background:#0ea5e9;
-color:white;
-font-size:16px;
 cursor:pointer;
 }
 
@@ -202,191 +247,238 @@ cursor:pointer;
 <div>⏱ <span id="timer">10</span></div>
 </header>
 
-<div id="progressContainer">
-<div id="progressBar"></div>
-</div>
-
 <div id="area">
 
 <div id="startScreen">
-
 <h1 class="gameTitle">Math Challenge</h1>
-
 <div class="materias">
-
-<button onclick="selecionarMateria('matematica')">Matemática</button>
-<button onclick="selecionarMateria('historia')">História</button>
-<button onclick="selecionarMateria('geografia')">Geografia</button>
-<button onclick="selecionarMateria('quimica')">Química</button>
-<button onclick="selecionarMateria('fisica')">Física</button>
-<button onclick="selecionarMateria('enem')">Questões ENEM</button>
-
-</div>
-
-<button id="startBtn">Iniciar Game</button>
-
-</div>
-
+<button onclick="selecionarMateria()">Matemática</button>
 </div>
 </div>
 
-<!-- SONS -->
+<div id="niveisEnsino">
 
-<audio id="startSound"><source src="start.mp3"></audio>
-<audio id="bgMusic" loop><source src="loop.mp3"></audio>
-<audio id="correctSound"><source src="correct.mp3"></audio>
-<audio id="wrongSound"><source src="wrong.mp3"></audio>
+<button class="voltar" onclick="voltarInicio()">←</button>
+
+<h2>Escolha o nível</h2>
+
+<button onclick="abrirTopicos('basico')">Ensino Básico</button>
+<button onclick="abrirTopicos('fundamental')">Ensino Fundamental</button>
+<button onclick="abrirTopicos('medio')">Ensino Médio</button>
+
+</div>
+
+<div id="topicosMatematica">
+
+<button class="voltar" onclick="voltarNiveis()">←</button>
+<button class="fecharTopicos" onclick="fecharTopicos()">✖</button>
+
+<h2>Escolha o tópico</h2>
+
+<div class="listaTopicos">
+
+<div class="grupoTopicos" id="topicosBasico">
+<button class="topicoBtn" onclick="selecionarTopico('soma')">Adição</button>
+<button class="topicoBtn" onclick="selecionarTopico('subtracao')">Subtração</button>
+<button class="topicoBtn" onclick="selecionarTopico('multiplicacao')">Multiplicação</button>
+<button class="topicoBtn" onclick="selecionarTopico('divisao')">Divisão</button>
+<button class="topicoBtn" onclick="selecionarTopico('tabuada')">Tabuada</button>
+</div>
+
+<div class="grupoTopicos" id="topicosFundamental">
+<button class="topicoBtn" onclick="selecionarTopico('fracoes')">Frações</button>
+<button class="topicoBtn" onclick="selecionarTopico('porcentagem')">Porcentagem</button>
+<button class="topicoBtn" onclick="selecionarTopico('regra3')">Regra de 3</button>
+<button class="topicoBtn" onclick="selecionarTopico('proporcao')">Razão e Proporção</button>
+<button class="topicoBtn" onclick="selecionarTopico('potencia')">Potenciação</button>
+</div>
+
+<div class="grupoTopicos" id="topicosMedio">
+<button class="topicoBtn" onclick="selecionarTopico('equacao1')">Equação 1º Grau</button>
+<button class="topicoBtn" onclick="selecionarTopico('equacao2')">Equação 2º Grau</button>
+<button class="topicoBtn" onclick="selecionarTopico('algebra')">Expressões Algébricas</button>
+</div>
+
+</div>
+</div>
+
+<div id="selecaoDificuldade" class="dificuldadeBox">
+
+<h3 id="topicoEscolhido"></h3>
+
+<label><input type="radio" name="dificuldade" value="facil" checked> Fácil</label>
+<label><input type="radio" name="dificuldade" value="medio"> Médio</label>
+<label><input type="radio" name="dificuldade" value="dificil"> Difícil</label>
+<label><input type="radio" name="dificuldade" value="enem"> ENEM</label>
+
+<button id="btnIniciarTopico" onclick="iniciarTopico()">Iniciar Game</button>
+
+</div>
+
+</div>
+</div>
 
 <script>
 
-/* VARIÁVEIS */
-
-let materiaAtual="matematica"
+let dificuldade="facil"
+let topicoAtual=""
 let vidas=5
 let pontos=0
 let nivel=1
 let resposta
-let progresso=0
-let metaNivel=5
 let tempo=10
 let intervalo
 
-/* BANCO DE PERGUNTAS */
+/* SONS */
 
-const perguntas={
+const somLoop=new Audio("sounds/loop.mp3")
+const somStart=new Audio("sounds/start.mp3")
+const somCorrect=new Audio("sounds/correct.mp3")
+const somWrong=new Audio("sounds/wrong.mp3")
 
-historia:[
+somLoop.loop=true
+somLoop.volume=0.3
 
-{texto:"Ano do descobrimento do Brasil",resp:1500},
-{texto:"Ano da independência do Brasil",resp:1822},
-{texto:"Ano da proclamação da república",resp:1889},
-{texto:"Ano do fim da segunda guerra mundial",resp:1945},
-{texto:"Ano da queda do muro de Berlim",resp:1989},
+/* NOMES */
 
-{texto:"Ano da revolução francesa",resp:1789},
-{texto:"Ano da chegada do homem na lua",resp:1969},
-{texto:"Ano da primeira guerra mundial",resp:1914},
-{texto:"Ano do fim da primeira guerra",resp:1918},
-{texto:"Ano da revolução russa",resp:1917},
+const nomesTopicos={
+soma:"Adição",
+subtracao:"Subtração",
+multiplicacao:"Multiplicação",
+divisao:"Divisão",
+tabuada:"Tabuada",
+fracoes:"Frações",
+porcentagem:"Porcentagem",
+regra3:"Regra de 3",
+proporcao:"Razão e Proporção",
+potencia:"Potenciação",
+equacao1:"Equação 1º Grau",
+equacao2:"Equação 2º Grau",
+algebra:"Expressões Algébricas"
+}
 
-{texto:"Ano da abolição da escravidão",resp:1888},
-{texto:"Ano da constituição brasileira atual",resp:1988},
-{texto:"Ano da guerra do Paraguai início",resp:1864},
-{texto:"Ano da guerra fria início",resp:1947},
-{texto:"Ano da queda do império romano ocidental",resp:476},
+/* DICAS DE ESTUDO */
 
-{texto:"Ano do ataque às torres gêmeas",resp:2001},
-{texto:"Ano da fundação de Roma",resp:-753},
-{texto:"Ano da independência dos EUA",resp:1776},
-{texto:"Ano da coroação de Napoleão",resp:1804},
-{texto:"Ano da crise de 1929",resp:1929},
+const dicasEstudo={
+soma:"Treine somas mentais e agrupamento de dezenas.",
+subtracao:"Use a reta numérica para visualizar a subtração.",
+multiplicacao:"Memorize a tabuada e use decomposição.",
+divisao:"Divisão é o inverso da multiplicação.",
+tabuada:"Pratique as tabuadas diariamente.",
+fracoes:"Aprenda simplificação e equivalência.",
+porcentagem:"Porcentagem significa dividir por 100.",
+regra3:"Organize os valores em proporção.",
+proporcao:"Entenda grandezas proporcionais.",
+potencia:"Potência é multiplicação repetida.",
+equacao1:"Isolar a incógnita resolve a equação.",
+equacao2:"Use a fórmula de Bhaskara.",
+algebra:"Treine simplificação de expressões."
+}
 
-{texto:"Ano da primeira olimpíada moderna",resp:1896},
-{texto:"Ano da chegada de Cabral ao Brasil",resp:1500},
-{texto:"Ano da revolução mexicana",resp:1910},
-{texto:"Ano do tratado de Versailles",resp:1919},
-{texto:"Ano da independência da Índia",resp:1947},
+/* NAVEGAÇÃO */
 
-{texto:"Ano da criação da ONU",resp:1945},
-{texto:"Ano da guerra do Vietnã início",resp:1955},
-{texto:"Ano do fim da guerra do Vietnã",resp:1975},
-{texto:"Ano do início da ditadura militar no Brasil",resp:1964},
-{texto:"Ano do fim da ditadura militar no Brasil",resp:1985},
+function selecionarMateria(){
+startScreen.style.display="none"
+niveisEnsino.style.display="flex"
+}
 
-{texto:"Ano da descoberta da América por Colombo",resp:1492},
-{texto:"Ano da revolução industrial início",resp:1760},
-{texto:"Ano da independência do México",resp:1810},
-{texto:"Ano da criação da OTAN",resp:1949},
-{texto:"Ano da guerra da Coreia início",resp:1950},
+function voltarInicio(){
+niveisEnsino.style.display="none"
+startScreen.style.display="flex"
+}
 
-{texto:"Ano do fim da guerra da Coreia",resp:1953},
-{texto:"Ano da independência da Argentina",resp:1816},
-{texto:"Ano da independência do Chile",resp:1818},
-{texto:"Ano da independência do Peru",resp:1821},
-{texto:"Ano da independência da Colômbia",resp:1810}
+function abrirTopicos(nivel){
 
-],
+niveisEnsino.style.display="none"
+topicosMatematica.style.display="flex"
 
-geografia:[
+document.querySelectorAll(".grupoTopicos").forEach(g=>g.style.display="none")
 
-{texto:"Quantos continentes existem",resp:6},
-{texto:"Quantos oceanos existem",resp:5},
-{texto:"Quantos estados tem o Brasil",resp:26},
-{texto:"Quantos países existem no mundo aprox",resp:195},
-{texto:"Altura aproximada do Everest (m)",resp:8848},
-
-{texto:"Maior país do mundo área",resp:1},
-{texto:"Maior floresta do mundo",resp:1},
-{texto:"Maior deserto quente",resp:1},
-{texto:"Maior rio do mundo extensão",resp:1},
-{texto:"Maior lago de água doce",resp:1},
-
-{texto:"Quantos fusos horários no Brasil",resp:4},
-{texto:"Quantos biomas principais no Brasil",resp:6},
-{texto:"População do Brasil milhões aprox",resp:214},
-{texto:"Maior estado do Brasil área",resp:1},
-{texto:"Menor estado do Brasil área",resp:1},
-
-{texto:"Capital do Brasil criada em",resp:1960},
-{texto:"Quantos países na América do Sul",resp:12},
-{texto:"Quantos países na Europa aprox",resp:44},
-{texto:"Quantos países na África aprox",resp:54},
-{texto:"Quantos países na Ásia aprox",resp:49},
-
-{texto:"Quantos países na América Central",resp:7},
-{texto:"Quantos países na América do Norte",resp:3},
-{texto:"Maior oceano do mundo",resp:1},
-{texto:"Maior cadeia montanhosa",resp:1},
-{texto:"Maior ilha do mundo",resp:1},
-
-{texto:"Maior país da América do Sul",resp:1},
-{texto:"Rio que corta o Egito",resp:1},
-{texto:"Deserto no norte da África",resp:1},
-{texto:"Montanha mais alta da África",resp:1},
-{texto:"Maior lago da África",resp:1},
-
-{texto:"Maior país da Europa área",resp:1},
-{texto:"Maior país da África área",resp:1},
-{texto:"País mais populoso do mundo",resp:1},
-{texto:"Segundo país mais populoso",resp:1},
-{texto:"Maior cidade do mundo população",resp:1},
-
-{texto:"Capital da França",resp:1},
-{texto:"Capital da Espanha",resp:1},
-{texto:"Capital da Itália",resp:1},
-{texto:"Capital da Alemanha",resp:1},
-{texto:"Capital do Japão",resp:1}
-
-]
+if(nivel==="basico") topicosBasico.style.display="flex"
+if(nivel==="fundamental") topicosFundamental.style.display="flex"
+if(nivel==="medio") topicosMedio.style.display="flex"
 
 }
 
-/* MATEMÁTICA */
+function voltarNiveis(){
+topicosMatematica.style.display="none"
+niveisEnsino.style.display="flex"
+}
+
+function fecharTopicos(){
+topicosMatematica.style.display="none"
+startScreen.style.display="flex"
+}
+
+function selecionarTopico(topico){
+topicoAtual=topico
+topicoEscolhido.innerText="Tópico: "+nomesTopicos[topico]
+selecaoDificuldade.style.display="flex"
+}
+
+/* INICIAR */
+
+function iniciarTopico(){
+
+somStart.play()
+somLoop.play()
+
+document.querySelectorAll('input[name="dificuldade"]').forEach(r=>{
+if(r.checked)dificuldade=r.value
+})
+
+topicosMatematica.style.display="none"
+selecaoDificuldade.style.display="none"
+
+novaRodada()
+
+}
+
+/* GERADOR */
 
 function gerarConta(){
 
-if(materiaAtual==="matematica"){
+let a=Math.floor(Math.random()*10)+1
+let b=Math.floor(Math.random()*10)+1
 
-let n1=Math.floor(Math.random()*20)+1
-let n2=Math.floor(Math.random()*20)+1
+if(topicoAtual==="soma"){resposta=a+b;return `${a}+${b}`}
+if(topicoAtual==="subtracao"){resposta=a-b;return `${a}-${b}`}
+if(topicoAtual==="multiplicacao"){resposta=a*b;return `${a}×${b}`}
 
-let ops=["+","-","*"]
-let op=ops[Math.floor(Math.random()*3)]
+if(topicoAtual==="divisao"){
+resposta=b
+return `${a*b} ÷ ${a}`
+}
 
-if(op==="+")resposta=n1+n2
-if(op==="-")resposta=n1-n2
-if(op==="*")resposta=n1*n2
+if(topicoAtual==="tabuada"){
+resposta=a*b
+return `${a}×${b}`
+}
 
-return `${n1} ${op} ${n2}`
+if(topicoAtual==="porcentagem"){
+resposta=(a*b)/100
+return `${b}% de ${a}`
+}
 
 }
 
-let lista=perguntas[materiaAtual]
+/* NÍVEL */
 
-let p=lista[Math.floor(Math.random()*lista.length)]
+function verificarNivel(){
 
-resposta=p.resp
-return p.texto
+if(pontos>=nivel*100){
+
+nivel++
+document.getElementById("nivel").innerText=nivel
+
+Swal.fire({
+title:"🎉 Subiu de nível!",
+text:"Agora você está no nível "+nivel,
+icon:"success",
+focusConfirm:false
+})
+
+}
 
 }
 
@@ -395,37 +487,34 @@ return p.texto
 function iniciarTimer(){
 
 tempo=10
-document.getElementById("timer").innerText=tempo
+timer.innerText=tempo
 
 clearInterval(intervalo)
 
 intervalo=setInterval(()=>{
 
 tempo--
-document.getElementById("timer").innerText=tempo
+timer.innerText=tempo
 
 if(tempo<=0){
 
 clearInterval(intervalo)
 
+somWrong.play()
+
 vidas--
 document.getElementById("vidas").innerText=vidas
 
-document.getElementById("wrongSound").play()
-
 Swal.fire({
-title:"Tempo acabou",
-text:"Resposta correta: "+resposta,
-icon:"error"
-}).then(()=>{
-
-if(vidas<=0){
-gameOver()
-}else{
-novaRodada()
-}
-
+title:"Tempo esgotado!",
+text:"A resposta correta era: "+resposta,
+icon:"info",
+timer:1500,
+showConfirmButton:false
 })
+
+if(vidas<=0)gameOver()
+else setTimeout(novaRodada,1500)
 
 }
 
@@ -437,14 +526,11 @@ novaRodada()
 
 function criarBox(){
 
-let area=document.getElementById("area")
-area.innerHTML=""
+let old=document.querySelector(".box")
+if(old)old.remove()
 
 let box=document.createElement("div")
 box.className="box"
-
-box.style.left="40%"
-box.style.top="40%"
 
 let label=document.createElement("label")
 label.innerText=gerarConta()
@@ -454,30 +540,26 @@ let input=document.createElement("input")
 let btn=document.createElement("button")
 btn.innerText="Confirmar"
 
-function verificar(){
+btn.onclick=()=>{
 
 clearInterval(intervalo)
 
-let valor=Number(input.value)
+if(input.value==="")return
 
-if(valor===resposta){
+if(parseFloat(input.value)==resposta){
 
-document.getElementById("correctSound").play()
+somCorrect.play()
 
 pontos+=10
-progresso++
-
 document.getElementById("pontos").innerText=pontos
 
-if(progresso>=metaNivel){
-proximoNivel()
-}else{
+verificarNivel()
+
 novaRodada()
-}
 
 }else{
 
-document.getElementById("wrongSound").play()
+somWrong.play()
 
 vidas--
 document.getElementById("vidas").innerText=vidas
@@ -485,29 +567,17 @@ document.getElementById("vidas").innerText=vidas
 Swal.fire({
 title:"Resposta incorreta",
 text:"Resposta correta: "+resposta,
-icon:"error",
-confirmButtonText:"Continuar"
-}).then(()=>{
-
-if(vidas<=0){
-gameOver()
-}else{
-novaRodada()
-}
-
+icon:"warning",
+timer:1500,
+showConfirmButton:false
 })
 
-}
+if(vidas<=0)gameOver()
+else setTimeout(novaRodada,1500)
 
 }
 
-btn.onclick=verificar
-
-input.addEventListener("keydown",function(e){
-if(e.key==="Enter"){
-verificar()
 }
-})
 
 box.appendChild(label)
 box.appendChild(input)
@@ -515,57 +585,9 @@ box.appendChild(btn)
 
 area.appendChild(box)
 
-setTimeout(()=>input.focus(),100)
+input.focus()
 
 iniciarTimer()
-
-}
-
-/* NÍVEL */
-
-function proximoNivel(){
-
-Swal.fire({
-title:"Parabéns",
-text:"Você passou de nível",
-icon:"success"
-}).then(()=>{
-
-nivel++
-progresso=0
-metaNivel+=2
-
-document.getElementById("nivel").innerText=nivel
-
-novaRodada()
-
-})
-
-}
-
-function selecionarMateria(materia){
-
-materiaAtual=materia
-
-Swal.fire({
-title:"Matéria selecionada",
-text:materia.toUpperCase(),
-icon:"success",
-timer:1000,
-showConfirmButton:false
-})
-
-}
-
-function gameOver(){
-
-Swal.fire({
-title:"Game Over",
-text:"Pontuação: "+pontos,
-icon:"error"
-}).then(()=>{
-location.reload()
-})
 
 }
 
@@ -573,21 +595,18 @@ function novaRodada(){
 criarBox()
 }
 
-document.getElementById("startBtn").onclick=()=>{
+function gameOver(){
 
-document.getElementById("startSound").play()
+somLoop.pause()
 
-setTimeout(()=>{
+let dica=dicasEstudo[topicoAtual] || "Continue praticando!"
 
-document.getElementById("startScreen").style.display="none"
-
-let music=document.getElementById("bgMusic")
-music.volume=0.3
-music.play()
-
-novaRodada()
-
-},400)
+Swal.fire({
+title:"Game Over",
+html:`Pontuação: <b>${pontos}</b><br><br>📚 <b>Dica:</b><br>${dica}`,
+icon:"error",
+focusConfirm:false
+}).then(()=>location.reload())
 
 }
 

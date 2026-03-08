@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Math Challenge</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#0f172a;
+padding:40px 0;
+}
+
+#game{
+width:80%;
+height:600px;
+margin:auto;
+background:#1e293b;
+border-radius:12px;
+overflow:hidden;
+position:relative;
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+header{
+display:flex;
+justify-content:space-between;
+padding:15px 20px;
+background:#020617;
+color:white;
+border-bottom:2px solid #0ea5e9;
+}
+
+#progressContainer{
+height:8px;
+background:#1e293b;
+}
+
+#progressBar{
+height:8px;
+width:0%;
+background:linear-gradient(90deg,#22c55e,#4ade80);
+}
+
+#area{
+position:relative;
+height:calc(100% - 70px);
+}
+
+/* START SCREEN */
+
+#startScreen{
+position:absolute;
+width:100%;
+height:100%;
+background:url("imgjogo.png");
+background-size:cover;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:30px;
+z-index:10;
+}
+
+#startScreen::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.gameTitle{
+font-size:40px;
+color:white;
+z-index:2;
+}
+
+.materias{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+z-index:2;
+}
+
+.materias button{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#0ea5e9;
+color:white;
+cursor:pointer;
+}
+
+/* BOX PERGUNTA */
+
+.box{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+border-radius:12px;
+border:2px solid rgba(255,255,255,0.2);
+display:flex;
+flex-direction:column;
+gap:10px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+padding:20px;
+}
+
+.box input{
+padding:8px;
+border:none;
+border-radius:6px;
+font-size:18px;
+}
+
+.box button{
+padding:10px;
+border:none;
+border-radius:6px;
+background:#0ea5e9;
+color:white;
+cursor:pointer;
+}
+
+#timer{
+color:#facc15;
+font-weight:bold;
+}
+
+/* TELA TOPICOS */
+
+#topicosMatematica{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+background:#020617;
+z-index:15;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+color:white;
+}
+
+.topicoBtn{
+padding:15px 28px;
+font-weight:bold;
+border:none;
+border-radius:12px;
+color:white;
+background:linear-gradient(135deg,#0ea5e9,#2563eb);
+cursor:pointer;
+}
+
+.topicoBtn:hover{
+transform:scale(1.05);
+}
+
+/* BOTÃO FECHAR */
+
+.fecharTopicos{
+position:absolute;
+top:20px;
+right:25px;
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:#ef4444;
+color:white;
+cursor:pointer;
+}
+
+/* DIFICULDADE */
+
+.dificuldadeBox{
+
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:300px;
+background:#020617;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.7);
+flex-direction:column;
+align-items:center;
+gap:15px;
+z-index:20;
+
+}
+
+.dificuldadeBox label{
+display:flex;
+gap:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+.dificuldadeBox input{
+transform:scale(1.4);
+}
+
+#btnIniciarTopico{
+width:100%;
+padding:14px;
+font-size:16px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:white;
+cursor:pointer;
+}
+
+#topicoEscolhido{
+font-weight:bold;
+color:#38bdf8;
+}
+
+.voltarDificuldade{
+
+position:absolute;
+
+top:10px;
+left:10px;
+
+width:35px;
+height:35px;
+
+border:none;
+border-radius:50%;
+
+background:#334155;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+.voltarDificuldade:hover{
+
+background:#475569;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="game">
+
+<header>
+<div>❤️ <span id="vidas">5</span></div>
+<div>Nível <span id="nivel">1</span></div>
+<div>⭐ <span id="pontos">0</span></div>
+<div>⏱ <span id="timer">10</span></div>
+</header>
+
+<div id="progressContainer">
+<div id="progressBar"></div>
+</div>
+
+<div id="area">
+
+<div id="startScreen">
+
+<h1 class="gameTitle">Math Challenge</h1>
+
+<div class="materias">
+<button onclick="selecionarMateria()">Matemática</button>
+</div>
+
+</div>
+
+<div id="topicosMatematica">
+
+<button class="fecharTopicos" onclick="fecharTopicos()">✖</button>
+
+<h2>Escolha o tópico</h2>
+
+<button class="topicoBtn" onclick="selecionarTopico('decimal')">Soma de Decimais</button>
+<button class="topicoBtn" onclick="selecionarTopico('fracao')">Soma de Frações</button>
+<button class="topicoBtn" onclick="selecionarTopico('regra3')">Regra de 3</button>
+<button class="topicoBtn" onclick="selecionarTopico('proporcao')">Razão e Proporção</button>
+<button class="topicoBtn" onclick="selecionarTopico('algebra')">Expressões Algébricas</button>
+
+<div id="selecaoDificuldade" class="dificuldadeBox">
+<button class="voltarDificuldade" onclick="voltarTopicos()">←</button>
+<h3>Escolha a dificuldade</h3>
+
+<p id="topicoEscolhido"></p>
+
+<label><input type="radio" name="dificuldade" value="facil" checked> Fácil</label>
+<label><input type="radio" name="dificuldade" value="medio"> Médio</label>
+<label><input type="radio" name="dificuldade" value="dificil"> Difícil</label>
+<label><input type="radio" name="dificuldade" value="enem"> ENEM</label>
+
+<button id="btnIniciarTopico" onclick="iniciarTopico()">Iniciar Game</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* VARIÁVEIS */
+
+let dificuldade="facil"
+let topicoAtual=""
+let vidas=5
+let pontos=0
+let nivel=1
+let resposta
+let progresso=0
+let metaNivel=5
+let tempo=10
+let intervalo
+let explicacao=""
+
+function voltarTopicos(){
+
+document.getElementById("selecaoDificuldade").style.display="none"
+
+}
+/* NOMES DOS TÓPICOS */
+
+const nomesTopicos={
+decimal:"Soma de Decimais",
+fracao:"Soma de Frações",
+regra3:"Regra de 3",
+proporcao:"Razão e Proporção",
+algebra:"Expressões Algébricas"
+}
+
+/* FUNÇÕES UI */
+
+function fecharTopicos(){
+document.getElementById("topicosMatematica").style.display="none"
+document.getElementById("selecaoDificuldade").style.display="none"
+}
+
+function selecionarMateria(){
+document.getElementById("topicosMatematica").style.display="flex"
+}
+
+function selecionarTopico(topico){
+
+topicoAtual=topico
+
+document.getElementById("topicoEscolhido").innerText=
+"Tópico: "+nomesTopicos[topico]
+
+document.getElementById("selecaoDificuldade").style.display="flex"
+
+}
+
+function iniciarTopico(){
+
+if(!topicoAtual){
+alert("Escolha um tópico primeiro!")
+return
+}
+
+let radios=document.querySelectorAll('input[name="dificuldade"]')
+
+radios.forEach(r=>{
+if(r.checked)dificuldade=r.value
+})
+
+/* ESCONDER TELAS */
+
+document.getElementById("topicosMatematica").style.display="none"
+document.getElementById("selecaoDificuldade").style.display="none"
+document.getElementById("startScreen").style.display="none"
+
+/* INICIAR JOGO */
+
+novaRodada()
+
+}
+/* GERADOR */
+
+function gerarConta(){
+
+if(topicoAtual==="decimal"){
+
+let n1=(Math.random()*10).toFixed(1)
+let n2=(Math.random()*10).toFixed(1)
+
+resposta=(Number(n1)+Number(n2)).toFixed(1)
+
+explicacao=`${n1} + ${n2} = ${resposta}`
+
+return `${n1} + ${n2}`
+
+}
+
+if(topicoAtual==="fracao"){
+
+let a=Math.floor(Math.random()*4)+1
+let b=Math.floor(Math.random()*4)+1
+
+resposta=a+b
+
+explicacao=`(${a}+${b})/2`
+
+return `${a}/2 + ${b}/2`
+
+}
+
+if(topicoAtual==="regra3"){
+
+let base=500
+let col=3
+let novo=700
+
+resposta=((novo*col)/base).toFixed(1)
+
+explicacao=`${novo} × ${col} ÷ ${base}`
+
+return `Se ${base}ml usa ${col} colheres, quantas para ${novo}?`
+
+}
+
+if(topicoAtual==="proporcao"){
+
+let a=2
+let b=4
+let c=6
+
+resposta=(b*c)/a
+
+explicacao=`${a}/${b} = ${c}/x`
+
+return `${a}/${b} = ${c}/x`
+
+}
+
+if(topicoAtual==="algebra"){
+
+let x=Math.floor(Math.random()*5)+1
+let a=Math.floor(Math.random()*5)+1
+
+resposta=a*x
+
+explicacao=`${a} × ${x}`
+
+return `Se x=${x}, quanto vale ${a}x ?`
+
+}
+
+}
+
+/* TIMER */
+
+function iniciarTimer(){
+
+tempo=10
+document.getElementById("timer").innerText=tempo
+
+clearInterval(intervalo)
+
+intervalo=setInterval(()=>{
+
+tempo--
+document.getElementById("timer").innerText=tempo
+
+if(tempo<=0){
+
+clearInterval(intervalo)
+
+vidas--
+document.getElementById("vidas").innerText=vidas
+
+Swal.fire({
+title:"Tempo acabou",
+html:`Resposta correta: <b>${resposta}</b><br>${explicacao}`,
+icon:"error"
+}).then(()=>{
+
+if(vidas<=0)gameOver()
+else novaRodada()
+
+})
+
+}
+
+},1000)
+
+}
+
+/* CRIAR BOX */
+
+function criarBox(){
+
+let area=document.getElementById("area")
+
+let old=document.querySelector(".box")
+if(old)old.remove()
+
+let box=document.createElement("div")
+box.className="box"
+
+let label=document.createElement("label")
+label.innerText=gerarConta()
+
+let input=document.createElement("input")
+
+let btn=document.createElement("button")
+btn.innerText="Confirmar"
+
+function verificar(){
+
+clearInterval(intervalo)
+
+let valor=parseFloat(input.value)
+
+if(valor==resposta){
+
+pontos+=10
+progresso++
+
+document.getElementById("pontos").innerText=pontos
+
+if(progresso>=metaNivel)proximoNivel()
+else novaRodada()
+
+}else{
+
+vidas--
+document.getElementById("vidas").innerText=vidas
+
+Swal.fire({
+title:"Resposta incorreta",
+html:`Resposta correta: <b>${resposta}</b><br>${explicacao}`,
+icon:"error"
+}).then(()=>{
+
+if(vidas<=0)gameOver()
+else novaRodada()
+
+})
+
+}
+
+}
+
+btn.onclick=verificar
+
+input.addEventListener("keypress",function(e){
+if(e.key==="Enter")verificar()
+})
+
+box.appendChild(label)
+box.appendChild(input)
+box.appendChild(btn)
+
+area.appendChild(box)
+
+input.focus()
+
+iniciarTimer()
+
+}
+
+function proximoNivel(){
+
+Swal.fire({
+title:"Parabéns",
+text:"Você subiu de nível!",
+icon:"success"
+}).then(()=>{
+
+nivel++
+progresso=0
+metaNivel+=2
+
+document.getElementById("nivel").innerText=nivel
+
+novaRodada()
+
+})
+
+}
+
+function novaRodada(){
+criarBox()
+}
+
+function gameOver(){
+
+Swal.fire({
+title:"Game Over",
+text:"Pontuação: "+pontos,
+icon:"error"
+}).then(()=>location.reload())
+
+}
+
+</script>
+
+</body>
+</html>
